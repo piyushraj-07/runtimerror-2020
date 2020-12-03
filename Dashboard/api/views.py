@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import User
-
+from rest_framework.decorators import api_view
 
 class UserRecordView(APIView):
     """
@@ -37,3 +37,16 @@ class UserRecordView(APIView):
             },
             status=status.HTTP_400_BAD_REQUEST
         )
+from api.serializers import registerSerializer
+
+@api_view(['POST',])
+def regist_view(request):
+    if request.method == 'POST':
+        serializer = registerSerializer(data=request.data)
+        data = {}
+        if serializer.is_valid():
+            account = serializer.save()
+            data['response']="Success"
+        else:
+            data = serializer.error
+        return Response(data)
