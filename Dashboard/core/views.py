@@ -27,7 +27,7 @@ def sendNotif(title, message, data):
     FCM_SERVER_KEY="AAAAgzHL4tY:APA91bHuZKqD66nhGAhW647HIlnNcmTcWF0GMa4ymFd_SHAqLDdQZaOMgdkBvh6YgD5BknyvcQoNcpDaf7N8NpmCjpTicDzMousJYI-Vms8aa4ceikbp4YflPP4T08bKeiWdronkt6Bj"
 
     push_service = FCMNotification(api_key=FCM_SERVER_KEY)
-    fcm_token = ["cuy9LP9tQXKNyd5MNrb6er:APA91bGTroxhexfkyqKxxlH92iMI-WEW85dbf0knpj_dtm9IGB4z2C7ukhNyaIuxQ2bdGX932y-as1jD4dl28_BYfrhvtNTttNCq4rc37eFNX-2YdxA-RApzNigmnilV6BVqLcCpDTWP"]
+    fcm_token = ["e7Oq97BYQT-uEyLcdwex7v:APA91bE6k8nBJlcdDYNVAb2eq3CXptHJ4f2ZJWEzHoaA0-XNLeVA0VEPd0_hZb6gU30hTsPc4tCEzCK3-1-EOrB_Gc1NSBlEmP2WIL3Ngh3k1EirpmIUKZ6SOSoQbFNnwd6_sChAm3KS"]
     print("success")
     return push_service.notify_multiple_devices(
           registration_ids=fcm_token,message_title=title,
