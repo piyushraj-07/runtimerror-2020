@@ -7,7 +7,7 @@ class Notification(models.Model):
     
 #class DashboardUsers(models.Model):
 
-class AppUsers(models.Model):
+class AppUser(models.Model):
     username = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=50)

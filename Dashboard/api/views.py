@@ -41,9 +41,11 @@ from api.serializers import registerSerializer
 
 @api_view(['POST',])
 def regist_view(request):
+    print("yus")
     if request.method == 'POST':
         serializer = registerSerializer(data=request.data)
         data = {}
+        print("gg")
         if serializer.is_valid():
             account = serializer.save()
             data['response']="Success"
