@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Notification,AppUser
+from .models import Notification,user_type,Course
 # Register your models here.
 admin.site.register(Notification)
-admin.site.register(AppUser)
+admin.site.register(user_type)
+admin.site.register(Course)

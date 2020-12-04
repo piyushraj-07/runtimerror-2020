@@ -8,7 +8,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
-
+from django.contrib.auth import authenticate, login
+from core.models import user_type
 class UserRecordView(APIView):
     """
     API View to create or get a list of all the registered
@@ -51,4 +52,20 @@ def regist_view(request):
             data['response']="Success"
         else:
             data = serializer.error
+        return Response(data)
+@api_view(['POST',])
+def login_dashboard(request):
+    print("yus")
+    if request.method == 'POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user = authenticate(request,username=username,password=password)
+        data = {}
+        print("gg")
+        print(user)
+        if user is not None and user_type.objects.get(user=user).is_instructor:
+            #account = serializer.save()
+            data['response']="Success"
+        else:
+            data['response']="Fail" 
         return Response(data)

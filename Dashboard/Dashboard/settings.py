@@ -24,7 +24,7 @@ SECRET_KEY = '-b0_u0%^s0%-p^y6!5(2574qn=3z5p5=k5jr#jjz&-e*v5gpcg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.3','localhost','127.0.0.1','0.0.0.0','rumtimeterror202069.herokuapp.com']
+ALLOWED_HOSTS = ['192.168.1.3','localhost','127.0.0.1','0.0.0.0','rumtimeterror202069.herokuapp.com','notifyme69.herokuapp.com']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'Dashboard.urls'

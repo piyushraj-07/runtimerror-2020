@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
-from core.models import AppUser
+from core.models import user_type
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -26,17 +26,19 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 class registerSerializer(serializers.ModelSerializer):
     password2=serializers.CharField(style={'input_type':'password'},write_only=True)
+    username=serializers.CharField(style={'input_type':'text'},write_only=True)
+    email=serializers.CharField(style={'input_type':'text'},write_only=True)
+    
     class Meta:
-        model = AppUser
-        fields = ['email','username','password','token','password2']
+        model = User
+        fields = ['email','username','password','password2']
         extra_kwargs = {
             'password': {'write_only':True}
         }
     def save(self):
-        newuser = AppUser(
-                    email=self.validated_data['email'],
+        newuser = User(
                     username=self.validated_data['username'],
-                    token=self.validated_data['token'],
+                    email=self.validated_data['email'],
         )
         password=self.validated_data['password']
         password2=self.validated_data['password2']
@@ -45,4 +47,6 @@ class registerSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'password':'Password must match.'})
         newuser.set_password(password)
         newuser.save()
-        return newuser
+        newcustomuser = user_type(is_student=True,user=newuser,courses=[])
+        newcustomuser.save()
+        return newcustomuser
