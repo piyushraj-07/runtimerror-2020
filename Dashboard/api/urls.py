@@ -1,9 +1,16 @@
 from django.urls import path
-from .views import UserRecordView , regist_view ,login_dashboard
+from .views import UserRecordView , regist_view ,login_dashboard,CourseViewStudents,login_app,joinCourseView,NotifViewStudents,CourseViewInstructors,AddCourse,getNotifDetails
 
 app_name = 'api'
 urlpatterns = [
     path('user/', UserRecordView.as_view(), name='users'),
-    path('register-user/',regist_view,name='register'),
-    path('login/dashboard',login_dashboard,name='login'),
+    path('register/app/',regist_view,name='register'),
+    path('login/dashboard/',login_dashboard,name='login'),
+    path('login/app/',login_app,name='login'),
+    path('get_courses/',CourseViewStudents.as_view(),name="courses"),
+    path('join_course/',joinCourseView.as_view(),name="joincourses"),
+    path('get_notifs/',NotifViewStudents.as_view(),name="joincourses"),    
+    path('inst/get_courses', CourseViewInstructors.as_view(),name="get_inst_courses"),
+    path('add_course/',AddCourse.as_view(),name="addCourses"),
+    path('get_notif_details/',getNotifDetails.as_view(),name="get_notif_details")
 ]

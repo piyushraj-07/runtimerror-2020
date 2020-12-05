@@ -1,27 +1,38 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
-class Notification(models.Model):
-    Title_text = models.CharField(max_length=50)
-    Content_text = models.CharField(max_length=300)
-    
+
 #class DashboardUsers(models.Model):
 
 
 class Course(models.Model):
-    instructors = models.ManyToManyField(User,related_name="instrictors")
+    instructors = models.ManyToManyField(User,related_name="instructors")
     students = models.ManyToManyField(User,related_name="students")
     tas = models.ManyToManyField(User,related_name="Tas")
-    code = models.CharField(User,max_length=6)
+    code = models.CharField(max_length=6,unique=True)
+    name = models.CharField(max_length=50,default='',unique=True)
+    def __str__(self):
+        return self.name
 
-class user_type(models.Model):
-    is_instructor = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=False)
-    is_ta = models.BooleanField(default=False)
+class Notification(models.Model):
+    Title_text = models.CharField(max_length=50)
+    Content_text = models.CharField(max_length=300)
+    Sentby = models.ForeignKey(User,default=1,on_delete=models.CASCADE,related_name="sender")
+    course = models.ForeignKey(Course,default=1,on_delete=models.CASCADE, related_name="course")
+    ReadBy = models.ManyToManyField(User,default=[1],related_name="readby")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     courses = models.ManyToManyField(Course)
+    token = models.CharField(max_length=100)
     def __str__(self):
-        if self.is_student == True:
             return User.get_username(self.user) + " - is_student"
-        elif self.is_instructor :
-            return User.get_username(self.user) + " - is_instructor"
+       
+
+class Instructor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    courses = models.ManyToManyField(Course)
+    is_ta = models.BooleanField(default=False)
+    def __str__(self):
+        return User.get_username(self.user) + " - is_instructor"

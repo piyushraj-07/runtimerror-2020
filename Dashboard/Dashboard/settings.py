@@ -28,7 +28,8 @@ ALLOWED_HOSTS = ['192.168.1.3','localhost','127.0.0.1','0.0.0.0','rumtimeterror2
 
 
 # Application definition
-
+CORS_ALLOW_ALL_ORIGINS = True
+    
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -129,8 +130,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
-    #'DEFAULT_PERMISSION_CLASSES': [
-     #   'rest_framework.permissions.IsAdminUser',
-    #],
+    'DEFAULT_PERMISSION_CLASSES': [
+        #'rest_framework.permissions.IsAdminUser',
+        #'rest_framework.permissions.IsAuthenticated'
+        # 'rest_framework.permissions.AllowAny'
+    ],
 }
 

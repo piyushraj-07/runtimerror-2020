@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
-from core.models import user_type
+from core.models import Student
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -45,8 +45,9 @@ class registerSerializer(serializers.ModelSerializer):
 
         if password!=password2:
             raise serializers.ValidationError({'password':'Password must match.'})
+        print("called")
         newuser.set_password(password)
         newuser.save()
-        newcustomuser = user_type(is_student=True,user=newuser,courses=[])
+        newcustomuser = Student(user=newuser)
         newcustomuser.save()
         return newcustomuser
