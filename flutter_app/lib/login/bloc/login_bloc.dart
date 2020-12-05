@@ -5,7 +5,7 @@ import 'package:flutter_app/bloc/authentication_bloc.dart';
 import 'package:flutter_app/repository/user_repository.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
-
+import 'package:flutter_app/globals.dart' as globals;
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -34,7 +34,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           username: event.username,
           password: event.password,
         );
-
+        globals.usern = user.username;
+        globals.tokun = user.token;
         authenticationBloc.add(LoggedIn(user: user));
         yield LoginInitial();
       } catch (error) {
