@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_app/model/api_model.dart';
 
-final _base = "https://rumtimeterror202069.herokuapp.com";
+final _base = "https://notifyme69.herokuapp.com";
 final _tokenEndpoint = "/api-token-auth/";
 final _tokenURL = _base + _tokenEndpoint;
 
