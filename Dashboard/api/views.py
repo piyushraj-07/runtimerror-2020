@@ -12,6 +12,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login
 from core.models import Course, Student , Instructor, Notification
+from pyfcm import FCMNotification
 class UserRecordView(APIView):
     """
     API View to create or get a list of all the registered
@@ -219,3 +220,82 @@ class getNotifDetails(APIView):
         data['title']=reqnotif.Title_text
         return Response(data)
         
+class sendNotif(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request , format=None ):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        coursename = body['course']
+        username = body['username']
+        title = body['title']
+        content = body['content']
+        user = User.objects.get(username=username)
+        course = Course.objects.get(name=coursename)
+        notif = Notification.objects.create(Title_text=title,Content_text=content,Sentby=user,course=course)
+        notif.save()
+        FCM_SERVER_KEY="AAAAgzHL4tY:APA91bHuZKqD66nhGAhW647HIlnNcmTcWF0GMa4ymFd_SHAqLDdQZaOMgdkBvh6YgD5BknyvcQoNcpDaf7N8NpmCjpTicDzMousJYI-Vms8aa4ceikbp4YflPP4T08bKeiWdronkt6Bj"
+        push_service = FCMNotification(api_key=FCM_SERVER_KEY)
+        fcm_token = []
+        for i in Student.objects.filter(courses=course):
+            fcm_token.append(student.token)
+        print(fcm_token,title,content,user,content)
+        data={}
+        push_service.notify_multiple_devices(
+          registration_ids=fcm_token,message_title=title,
+          message_body=content, data_message=data)
+        return Response("Success")
+
+class getStudentsAndTAs(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        coursename = body['course']
+        course = Course.objects.get(name=coursename)
+        data={}
+        l=[]
+        for i in Student.objects.filter(courses=course):
+            l.append(i.user.username)
+        data['students']=l
+        l=[]
+        for i in Instructor.objects.filter(courses=course):
+            if(i.is_ta):
+                l.append(i.user.username)
+        data['tas']=l
+        return Response(data)
+
+class AddTa(APIView):
+    permission_classes= [IsAuthenticated]
+    def post( self, request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        coursename = body['course']
+        ta=body['username']
+        user = User.objects.get(username=ta)
+        inst = Instructor.objects.get(user=user)
+        if inst.is_ta:
+            course=Course.objects.get(name=coursename)
+            course.tas.add(user)
+            inst.courses.add(course)
+            course.save()
+            inst.save()
+            return Response("Success")
+        else :
+            return Response("Fail")
+class RemoveStudent(APIView):
+    permission_classes= [IsAuthenticated]
+    def post( self, request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        print("yus")
+        coursename = body['course']
+        username=body['username']
+        user = User.objects.get(username=username)
+        stud = Student.objects.get(user=user)
+        
+        course=Course.objects.get(name=coursename)
+        course.tas.remove(user)
+        stud.courses.remove(course)
+        course.save()
+        stud.save()
+        return Response("Success")
