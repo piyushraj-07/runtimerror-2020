@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_app/model/api_model.dart';
 
 final _base = "https://notifyme69.herokuapp.com";
-final _tokenEndpoint = "/api-token-auth/";
+final _tokenEndpoint = "/api/login/app/";
 final _tokenURL = _base + _tokenEndpoint;
 
 Future<Token> getToken(UserLogin userLogin) async {

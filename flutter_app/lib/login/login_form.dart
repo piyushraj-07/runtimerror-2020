@@ -4,10 +4,10 @@ import 'package:flutter_app/login/bloc/login_bloc.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter_app/model/api_model.dart';
+//import 'package:flutter_app/model/api_model.dart';
 
 final _base = "https://notifyme69.herokuapp.com";
-final _tokenEndpoint = "/api/register-user/";
+final _tokenEndpoint = "/api/register/app/";
 final _tokenURL = _base + _tokenEndpoint;
 
 class LoginForm extends StatefulWidget {
@@ -31,6 +31,7 @@ class _LoginFormState extends State<LoginForm> {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginFaliure) {
+          // ignore: deprecated_member_use
           Scaffold.of(context).showSnackBar(SnackBar(
             content: Text('${state.error}'),
             backgroundColor: Colors.red,
@@ -135,8 +136,8 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, dynamic> fun() {
       Map<String, dynamic> toDatabaseJson() => {
-            "username": _usernameController.text,
             "email": _emailController.text,
+            "username": _usernameController.text,
             "password": _passwordController.text,
             "password2": _password2Controller.text,
           };
@@ -182,7 +183,7 @@ class SecondRoute extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login | Home Hub'),
+        title: Text('Login'),
       ),
       body: (Container(
         child: Form(

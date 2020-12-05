@@ -55,6 +55,7 @@ class App extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        // ignore: missing_return
         builder: (context, state) {
           if (state is AuthenticationUnintialized) {
             return SplashPage();
