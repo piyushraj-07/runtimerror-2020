@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 //import 'package:flutter_app/model/api_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/bloc/authentication_bloc.dart';
+// ignore: unused_import
 import 'package:flutter_dnd/flutter_dnd.dart';
 import 'package:http/http.dart' as http;
 //import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_app/globals.dart' as globals;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sound_mode/sound_mode.dart';
+// ignore: unused_import
 import 'package:sound_mode/utils/sound_profiles.dart';
 //import 'package:sound_mode/utils/sound_profiles.dart';
 
@@ -43,24 +45,34 @@ class _MessageHandlerState extends State<MessageHandler> {
     print(globals.tokun);
   }
 
+  // ignore: non_constant_identifier_names
+  log_out() async {
+    String lop = 'https://notifyme69.herokuapp.com/api/logout/';
+    String tpp = "Token " + globals.tokun;
+    String pqww = globals.usern;
+    String po = '{"username":"$pqww"}';
+    // ignore: unused_local_variable
+    final http.Response response = await http.post(
+      lop,
+      headers: <String, String>{
+        //'Content-Type': 'application/json; charset=UTF-8',
+        //'Vary': 'Accept',
+        //'WWW-Authenticate': globals.tokun,
+        'Authorization': tpp,
+      },
+      body: po,
+    );
+  }
+
   Future<List> getdata() async {
     if (globals.tokun == "") {
+      log_out();
       BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
       return [];
     }
     String ringerStatus = await SoundMode.ringerModeStatus;
     print(ringerStatus);
-    if (await FlutterDnd.isNotificationPolicyAccessGranted) {
-      await FlutterDnd.setInterruptionFilter(FlutterDnd
-          .INTERRUPTION_FILTER_NONE); // Turn on DND - All notifications are suppressed.
-    } else {
-      FlutterDnd.gotoPolicySettings();
-    }
-    try {
-      await SoundMode.setSoundMode(Profiles.NORMAL);
-    } on PlatformException {
-      print('Please enable permissions required');
-    }
+
     String lop = 'https://notifyme69.herokuapp.com/api/get_courses/';
     String tpp = "Token " + globals.tokun;
     String pqww = globals.usern;
@@ -123,10 +135,11 @@ class _MessageHandlerState extends State<MessageHandler> {
     print(susponse.body);
     if (susponse.body == '{"response":"success"}') {
       print("suc");
+      setState(() {});
       // ignore: deprecated_member_use
       return Scaffold.of(context).showSnackBar(SnackBar(
         content: Text('Registration Successful'),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.green,
       ));
     } else {
       print("unsuc");
@@ -245,6 +258,7 @@ class _MessageHandlerState extends State<MessageHandler> {
             onPressed: () {
               //print(globals.usern);
               //print(globals.tokun);
+              log_out();
               BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
             },
             shape: StadiumBorder(
@@ -277,7 +291,7 @@ class _MessageHandlerState extends State<MessageHandler> {
                 DialogButton(
                   onPressed: () {
                     adcourse();
-                    setState(() {});
+
                     //Navigator.pop(context);
                   },
                   child: Text(
@@ -404,8 +418,8 @@ class ThirdRoute extends StatelessWidget {
     String secC = "Token " + globals.tokun;
     int cors = globals.notinum;
     String coursename = globals.cours;
-    //String pqww = globals.usern;
-    String po = '{"id":"$cors","course":"$coursename"}';
+    String pqww = globals.usern;
+    String po = '{"id":"$cors","course":"$coursename","username":"$pqww"}';
     print(po);
     //print(tpp);
     final http.Response response = await http.post(
