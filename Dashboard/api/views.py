@@ -77,6 +77,7 @@ def login_dashboard(request):
             #account = serializer.save()
                 data['response']="Success"
                 data['token']=token.key
+                data['isTa']=instructor.is_ta
             else :
                 data['response']="Fail"
         else:
@@ -179,6 +180,24 @@ class NotifViewStudents(APIView):
         data['courses']=l
         return Response(l)      
 
+class NotifViewInst(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request,format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        coursename = body['course']
+        print(coursename)
+        course = Course.objects.get(name=coursename)
+        notifs = list(Notification.objects.filter(course=course))
+        data = {}
+        l=[]
+        ind=0
+        for i in notifs :
+            l.append(str(ind+1)+" "+i.Title_text)
+            ind+=1
+        data['courses']=l
+        return Response(l)    
+
 class AddCourse(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request, format=None):
@@ -206,7 +225,34 @@ class getNotifDetails(APIView):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         coursename = body['course']
+        username = body['username']
+        user = User.objects.get(username=username)
         notif_id = int(body['id'])
+        print(coursename,notif_id)
+        course = Course.objects.get(name=coursename)
+        print(course)
+        notifs = list(Notification.objects.filter(course=course))
+        print(notifs)
+        reqnotif = notifs[notif_id]
+        reqnotif.ReadBy.add(user)
+        reqnotif.save()
+        data = {}
+        data['content']=reqnotif.Content_text
+        data['time']=reqnotif.created_at
+        data['sender']=reqnotif.Sentby.username
+        data['title']=reqnotif.Title_text
+        return Response(data)
+
+
+class getNotifDetailsInst(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        coursename = body['course']
+        notif_id = list(body['name'].split())
+        notif_id=int(notif_id[0])
+        notif_id-=1
         print(coursename,notif_id)
         course = Course.objects.get(name=coursename)
         print(course)
@@ -218,6 +264,10 @@ class getNotifDetails(APIView):
         data['time']=reqnotif.created_at
         data['sender']=reqnotif.Sentby.username
         data['title']=reqnotif.Title_text
+        l=[]
+        for i in reqnotif.ReadBy.all():
+            l.append(i.name)
+        data["read"]=l
         return Response(data)
         
 class sendNotif(APIView):
@@ -229,20 +279,37 @@ class sendNotif(APIView):
         username = body['username']
         title = body['title']
         content = body['content']
+        prio = body['flag']
+        if(prio=="Hard"):
+            f=True
+        else :
+            f=False
         user = User.objects.get(username=username)
         course = Course.objects.get(name=coursename)
-        notif = Notification.objects.create(Title_text=title,Content_text=content,Sentby=user,course=course)
+        notif = Notification.objects.create(Title_text=title,Content_text=content,Sentby=user,course=course,priority=f)
         notif.save()
         FCM_SERVER_KEY="AAAAgzHL4tY:APA91bHuZKqD66nhGAhW647HIlnNcmTcWF0GMa4ymFd_SHAqLDdQZaOMgdkBvh6YgD5BknyvcQoNcpDaf7N8NpmCjpTicDzMousJYI-Vms8aa4ceikbp4YflPP4T08bKeiWdronkt6Bj"
         push_service = FCMNotification(api_key=FCM_SERVER_KEY)
         fcm_token = []
         for i in Student.objects.filter(courses=course):
-            fcm_token.append(student.token)
+            fcm_token.append(i.token)
         print(fcm_token,title,content,user,content)
         data={}
-        push_service.notify_multiple_devices(
-          registration_ids=fcm_token,message_title=title,
-          message_body=content, data_message=data)
+        data['value']=notif.priority
+        if(notif.priority):
+            extra_notification_kwargs = {
+            'image':  "https://miro.medium.com/max/2710/1*VYhexO08Zwwg9Woa_VLeSA.jpeg"
+            }
+            push_service.notify_multiple_devices(
+                registration_ids=fcm_token,message_title=title,
+                message_body=content, data_message=data,extra_notification_kwargs=extra_notification_kwargs)
+        else :
+            extra_notification_kwargs = {
+            'sound':None
+            }
+            push_service.notify_multiple_devices(
+                registration_ids=fcm_token,message_title=title,
+                message_body=content, data_message=data,extra_notification_kwargs=extra_notification_kwargs,low_priority=True)
         return Response("Success")
 
 class getStudentsAndTAs(APIView):
@@ -290,12 +357,33 @@ class RemoveStudent(APIView):
         print("yus")
         coursename = body['course']
         username=body['username']
+        print(username)
         user = User.objects.get(username=username)
         stud = Student.objects.get(user=user)
-        
+        print(stud,user)
         course=Course.objects.get(name=coursename)
         course.tas.remove(user)
         stud.courses.remove(course)
         course.save()
         stud.save()
         return Response("Success")
+
+class changePassword(APIView):
+    permission_classes = [IsAuthenticated]
+    def post( self,request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        username = body['username']
+        oldpassword = body['oldpassword']
+        newpassword = body['newpassword']
+        user = authenticate(username=username,password=oldpassword)
+        data={}
+        if user is not None:
+            user.set_password(newpassword)
+            user.save()
+            token, created = Token.objects.get_or_create(user=user)
+            #account = serializer.save()
+            data['token']=token.key    
+        else:
+            data['response']="Fail"
+        return Response(data)

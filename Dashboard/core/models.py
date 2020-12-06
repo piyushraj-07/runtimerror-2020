@@ -21,6 +21,7 @@ class Notification(models.Model):
     course = models.ForeignKey(Course,default=1,on_delete=models.CASCADE, related_name="course")
     ReadBy = models.ManyToManyField(User,default=[1],related_name="readby")
     created_at = models.DateTimeField(auto_now_add=True)
+    priority = models.BooleanField(default=False)
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
