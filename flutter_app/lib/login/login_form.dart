@@ -4,10 +4,10 @@ import 'package:flutter_app/login/bloc/login_bloc.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter_app/model/api_model.dart';
+//import 'package:flutter_app/model/api_model.dart';
 
 final _base = "https://notifyme69.herokuapp.com";
-final _tokenEndpoint = "/api/register-user/";
+final _tokenEndpoint = "/api/register/app/";
 final _tokenURL = _base + _tokenEndpoint;
 
 class LoginForm extends StatefulWidget {
@@ -31,8 +31,9 @@ class _LoginFormState extends State<LoginForm> {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginFaliure) {
+          // ignore: deprecated_member_use
           Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text('${state.error}'),
+            content: Text('Login Unsuccessful'),
             backgroundColor: Colors.red,
           ));
         }
@@ -89,7 +90,7 @@ class _LoginFormState extends State<LoginForm> {
                         padding: EdgeInsets.only(top: 30.0),
                         child: RaisedButton(
                           child: Text(
-                            'SIGN UP',
+                            'Sign Up',
                             style: TextStyle(
                               fontSize: 24.0,
                             ),
@@ -127,6 +128,7 @@ class _LoginFormState extends State<LoginForm> {
 }
 
 class SecondRoute extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _emailController = TextEditingController();
@@ -135,15 +137,15 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, dynamic> fun() {
       Map<String, dynamic> toDatabaseJson() => {
-            "username": _usernameController.text,
             "email": _emailController.text,
+            "username": _usernameController.text,
             "password": _passwordController.text,
             "password2": _password2Controller.text,
           };
       return toDatabaseJson();
     }
 
-    Future<String> getToken() async {
+    Future getToken(BuildContext context) async {
       print(_tokenURL);
       print(jsonEncode(fun()));
       print("kokoko");
@@ -167,22 +169,37 @@ class SecondRoute extends StatelessWidget {
         body: jsonEncode(fun()),
       );
       print("uuuuuuuu");
-      if (response.statusCode == 200) {
-        print("Success");
-        return "Success";
+      print(response.body);
+      print("asd");
+
+      if (response.body == '{"response":"Success"}') {
+        print("suc");
+        final snackBar = SnackBar(
+          content: Text('Registration Successful'),
+          backgroundColor: Colors.green,
+        );
+        // ignore: deprecated_member_use
+        _scaffoldKey.currentState.showSnackBar(snackBar);
       } else {
-        print("Failure");
-        return "Failure";
+        print("unsuc");
+        // ignore: deprecated_member_use
+        final snackBar = SnackBar(
+          content: Text('Registration Unsuccessful'),
+          backgroundColor: Colors.red,
+        );
+        // ignore: deprecated_member_use
+        _scaffoldKey.currentState.showSnackBar(snackBar);
       }
     }
 
-    _onsignupButtonPressed() {
-      getToken();
+    _onsignupButtonPressed(BuildContext context) {
+      getToken(context);
     }
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Login | Home Hub'),
+        title: Text('Login'),
       ),
       body: (Container(
         child: Form(
@@ -201,7 +218,6 @@ class SecondRoute extends StatelessWidget {
                   decoration: InputDecoration(
                       labelText: 'email', icon: Icon(Icons.person)),
                   controller: _emailController,
-                  obscureText: true,
                 ),
                 TextFormField(
                   decoration: InputDecoration(
@@ -218,11 +234,13 @@ class SecondRoute extends StatelessWidget {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.85,
-                  height: MediaQuery.of(context).size.width * 0.22,
+                  height: MediaQuery.of(context).size.width * 0.17,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 30.0),
+                    padding: EdgeInsets.only(top: 15.0),
                     child: RaisedButton(
-                      onPressed: _onsignupButtonPressed,
+                      onPressed: () {
+                        _onsignupButtonPressed(context);
+                      },
                       child: Text(
                         'Register',
                         style: TextStyle(
