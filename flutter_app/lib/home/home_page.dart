@@ -248,26 +248,17 @@ class _MessageHandlerState extends State<MessageHandler> {
       appBar: AppBar(
         title: Text('Home'),
         actions: <Widget>[
-          RaisedButton(
-            child: Text(
-              'Logout',
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            ),
-            onPressed: () {
-              //print(globals.usern);
-              //print(globals.tokun);
-              log_out();
-              BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+          PopupMenuButton<String>(
+            onSelected: handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Change Password', 'Logout'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
             },
-            shape: StadiumBorder(
-              side: BorderSide(
-                color: Colors.black,
-                width: 2,
-              ),
-            ),
-          )
+          ),
         ],
       ),
       body: tuildlist(),
@@ -305,6 +296,26 @@ class _MessageHandlerState extends State<MessageHandler> {
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  void handleClick(String value) {
+    switch (value) {
+      case 'Logout':
+        {
+          log_out();
+          BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+          break;
+        }
+      case 'Change Password':
+        {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FourthRoute()),
+          );
+          print("chanef");
+          break;
+        }
+    }
   }
 
   /// Get the token, save it to the database for current user
@@ -487,6 +498,127 @@ class ThirdRoute extends StatelessWidget {
         title: Text('Event Details'),
       ),
       body: notigbuild(),
+    );
+  }
+}
+
+class FourthRoute extends StatelessWidget {
+  @override
+  // ignore: override_on_non_overriding_member
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _usernameController = TextEditingController();
+  final _oldpasswordController = TextEditingController();
+  final _newpasswordController = TextEditingController();
+  Map<String, dynamic> fun() {
+    Map<String, dynamic> toDatabaseJson() => {
+          "username": _usernameController.text,
+          "oldpassword": _oldpasswordController.text,
+          "newpassword": _newpasswordController.text,
+        };
+    return toDatabaseJson();
+  }
+
+  Future _changepassword(BuildContext context) async {
+    String sez = 'https://notifyme69.herokuapp.com/api/changepassword/';
+    String secC = "Token " + globals.tokun;
+    //print(tpp);
+    print(fun());
+    final http.Response response = await http.post(
+      sez,
+      headers: <String, String>{
+        //'Content-Type': 'application/json; charset=UTF-8',
+        //'Vary': 'Accept',
+        //'WWW-Authenticate': globals.tokun,
+        'Authorization': secC,
+      },
+      body: jsonEncode(fun()),
+    );
+    print(response.body);
+    if (response.body != '{"response":"Fail"}') {
+      print("suc");
+      print(globals.tokun);
+      var tokan = jsonDecode(response.body);
+      globals.tokun = tokan["token"];
+      print(response.body);
+      print(globals.tokun);
+      final snackBar = SnackBar(
+        content: Text('Password Changed Successfully'),
+        backgroundColor: Colors.green,
+      );
+      // ignore: deprecated_member_use
+      _scaffoldKey.currentState.showSnackBar(snackBar);
+    } else {
+      print("unsuc");
+      // ignore: deprecated_member_use
+      final snackBar = SnackBar(
+        content: Text('Enter Correct Username/Password'),
+        backgroundColor: Colors.red,
+      );
+      // ignore: deprecated_member_use
+      _scaffoldKey.currentState.showSnackBar(snackBar);
+    }
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: AppBar(
+        title: Text('Change Password'),
+      ),
+      body: (Container(
+        child: Form(
+          child: Padding(
+            padding: EdgeInsets.all(40.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'username', icon: Icon(Icons.person)),
+                  controller: _usernameController,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'old password', icon: Icon(Icons.security)),
+                  controller: _oldpasswordController,
+                  obscureText: true,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'new password', icon: Icon(Icons.security)),
+                  controller: _newpasswordController,
+                  obscureText: true,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  height: MediaQuery.of(context).size.width * 0.17,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: RaisedButton(
+                      onPressed: () {
+                        _changepassword(context);
+                      },
+                      child: Text(
+                        'Change Password',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                        ),
+                      ),
+                      shape: StadiumBorder(
+                        side: BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      )),
     );
   }
 }
