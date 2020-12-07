@@ -1,5 +1,6 @@
 import json
 from django.shortcuts import render
+import datetime
 
 # Create your views here.
 from .serializers import UserSerializer
@@ -11,8 +12,12 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login
-from core.models import Course, Student , Instructor, Notification
+from core.models import Course, Student , Instructor, Notification, OTP
 from pyfcm import FCMNotification
+import random
+from django.core.mail import send_mail
+
+
 class UserRecordView(APIView):
     """
     API View to create or get a list of all the registered
@@ -170,15 +175,28 @@ class NotifViewStudents(APIView):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         coursename = body['course']
-        print(coursename)
+        username = body['username']
+        print(coursename, username)
         course = Course.objects.get(name=coursename)
         notifs = list(Notification.objects.filter(course=course))
         data = {}
         l=[]
-        for i in notifs :
+        k=[]
+        g=[]
+        for i in notifs[::-1] :
             l.append(i.Title_text)
-        data['courses']=l
-        return Response(l)      
+            k.append(i.priority)
+            try :
+                user = i.ReadBy.get(username=username)
+                print(user)
+                g.append(True)
+            except:
+                g.append(False)
+        print("gg")
+        data['titles']=l
+        data['priority']=k
+        data['seen']=g
+        return Response(data)      
 
 class NotifViewInst(APIView):
     permission_classes = [IsAuthenticated]
@@ -192,7 +210,7 @@ class NotifViewInst(APIView):
         data = {}
         l=[]
         ind=0
-        for i in notifs :
+        for i in notifs[::-1] :
             l.append(str(ind+1)+" "+i.Title_text)
             ind+=1
         data['courses']=l
@@ -233,6 +251,7 @@ class getNotifDetails(APIView):
         print(course)
         notifs = list(Notification.objects.filter(course=course))
         print(notifs)
+        notifs = notifs[::-1]
         reqnotif = notifs[notif_id]
         reqnotif.ReadBy.add(user)
         reqnotif.save()
@@ -277,7 +296,7 @@ class getNotifDetailsInst(APIView):
         data['title']=reqnotif.Title_text
         l=[]
         for i in reqnotif.ReadBy.all():
-            l.append(i.name)
+            l.append(i.username)
         data["read"]=l
         return Response(data)
         
@@ -303,6 +322,7 @@ class sendNotif(APIView):
         push_service = FCMNotification(api_key=FCM_SERVER_KEY)
         fcm_token = []
         for i in Student.objects.filter(courses=course):
+            print(i,course)
             fcm_token.append(i.token)
         print(fcm_token,title,content,user,content)
         data={}
@@ -431,3 +451,37 @@ class changePassword(APIView):
         else:
             data['response']="Fail"
         return Response(data)
+
+class SendOTP(APIView):
+    def post( self,request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        username = body['username']
+        user = User.objects.get(username=username)
+        email = body['email']
+        otp = ''.join([str(random.randint(0, 999)).zfill(3) for _ in range(2)])
+        newotp = OTP(OTP=otp,email=email)
+        send_mail('OTP for reseting password',"Your otp is " + otp , 'notiflyer69@gmail.com',[email],fail_silently=False)
+        return Response("Success")
+
+class ConfirmOTP(APIView):
+    def post(self, request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        otp = body['otp']
+        email = body['email']
+        username = body['username']
+        otpobj = OTP.objects.get(otp=otp)
+        if datetime.now()>otpobj.Date + datetime.timedelta(days=0,hours=1):
+            return Response("Fail")
+        if otpobj.email == email :
+            password1=body['password1']
+            password2=body['password2']
+            if password1 == password2 :
+                user = User.objects.get(username=username)
+                user.set_password(password1)
+                return Response("Success")
+            else :
+                return Response("Fail")
+        else :
+            return Response("Fail")        

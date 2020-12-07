@@ -21,5 +21,6 @@ urlpatterns = [
     path('addTa/',AddTa.as_view(),name="addTa"),
     path('removestudent/',RemoveStudent.as_view(),name="removestud"),
     path('changepassword/',changePassword.as_view(),name="changepassword"),
-    path('logout/',Logout.as_view(),name="logout")
+    path('logout/',Logout.as_view(),name="logout"),
+    path('otp/',SendOTP.as_view(),name="otp")
 ]

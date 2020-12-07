@@ -26,6 +26,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.1.3','localhost','127.0.0.1','0.0.0.0','rumtimeterror202069.herokuapp.com','notifyme69.herokuapp.com']
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'notiflyer69@gmail.com'
+EMAIL_HOST_PASSWORD = 'rajabose69'
+
+
+
 
 # Application definition
 CORS_ALLOW_ALL_ORIGINS = True
