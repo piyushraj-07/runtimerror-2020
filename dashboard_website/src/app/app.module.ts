@@ -9,7 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { NotificationComponent } from './notification/notification.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from  '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,8 @@ import { NotificationComponent } from './notification/notification.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatToolbarModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
