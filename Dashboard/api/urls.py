@@ -16,7 +16,10 @@ urlpatterns = [
     path('inst/get_notif_details/',getNotifDetailsInst.as_view(),name="get_notif_details"),
     path('send_notif/',sendNotif.as_view(),name="notifications"),
     path('getStudentsTas/',getStudentsAndTAs.as_view(),name="getall"),
+    path('getStudents/',getStudents.as_view(),name="getall"),
+    path('getTas/',getTAs.as_view(),name="getall"),
     path('addTa/',AddTa.as_view(),name="addTa"),
     path('removestudent/',RemoveStudent.as_view(),name="removestud"),
-    path('changepassword/',changePassword.as_view(),name="changepassword")
+    path('changepassword/',changePassword.as_view(),name="changepassword"),
+    path('logout/',Logout.as_view(),name="logout")
 ]

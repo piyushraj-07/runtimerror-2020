@@ -142,7 +142,7 @@ class CourseViewInstructors(APIView):
         for i in instruct.courses.all() :
             l.append(i.name)
         data['courses']=l
-        return Response(l)\
+        return Response(l)
 
 class joinCourseView(APIView):
     permission_classes = [IsAuthenticated]
@@ -243,6 +243,17 @@ class getNotifDetails(APIView):
         data['title']=reqnotif.Title_text
         return Response(data)
 
+class Logout(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self,request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        username=body['username']
+        user = User.objects.get(username=username)
+        student = Student.objects.get(user=user)
+        student.token=''
+        student.save()
+        return Response("Success")
 
 class getNotifDetailsInst(APIView):
     permission_classes = [IsAuthenticated]
@@ -331,6 +342,38 @@ class getStudentsAndTAs(APIView):
         data['tas']=l
         return Response(data)
 
+class getTAs(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        coursename = body['course']
+        course = Course.objects.get(name=coursename)
+        data={}
+        l=[]
+
+        for i in Instructor.objects.filter(courses=course):
+            if(i.is_ta):
+                l.append(i.user.username)
+        data['tas']=l
+        return Response(l)
+
+class getStudents(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        coursename = body['course']
+        course = Course.objects.get(name=coursename)
+        data={}
+        l=[]
+        for i in Student.objects.filter(courses=course):
+            l.append(i.user.username)
+        data['students']=l
+
+        return Response(l)
+
+
 class AddTa(APIView):
     permission_classes= [IsAuthenticated]
     def post( self, request, format=None):
@@ -349,6 +392,7 @@ class AddTa(APIView):
             return Response("Success")
         else :
             return Response("Fail")
+
 class RemoveStudent(APIView):
     permission_classes= [IsAuthenticated]
     def post( self, request, format=None):
@@ -362,7 +406,7 @@ class RemoveStudent(APIView):
         stud = Student.objects.get(user=user)
         print(stud,user)
         course=Course.objects.get(name=coursename)
-        course.tas.remove(user)
+        course.students.remove(user)
         stud.courses.remove(course)
         course.save()
         stud.save()
