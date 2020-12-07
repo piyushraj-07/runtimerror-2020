@@ -1,5 +1,5 @@
-import 'package:flutter_app/database/user_database.dart';
-import 'package:flutter_app/model/user_model.dart';
+import 'package:notiflyer/database/user_database.dart';
+import 'package:notiflyer/model/user_model.dart';
 
 class UserDao {
   final dbProvider = DatabaseProvider.dbProvider;

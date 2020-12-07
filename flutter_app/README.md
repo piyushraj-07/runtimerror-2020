@@ -1,4 +1,4 @@
-# flutter_app
+# notiflyer
 
 A new Flutter application.
 

@@ -19,9 +19,6 @@ export class AuthService {
       'Content-Type':  'application/json',
       'Authorization': this.str
   });
-    console.log(Data.token);
-    console.log(this.str);
-    console.log(this.str);
     return this.http.post('https://notifyme69.herokuapp.com/api/inst/get_courses/',data,{headers : this.httpheaders});
   }
   addCourse(data:any): Observable<any>{
@@ -31,6 +28,14 @@ export class AuthService {
       'Authorization': this.str
   });
     return this.http.post('https://notifyme69.herokuapp.com/api/add_course/',data,{headers : this.httpheaders});
+  }
+  ChangePassword(data : any): Observable<any>{
+    this.str='Token '+sessionStorage.getItem('token');
+    this.httpheaders = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': this.str
+  });
+   return this.http.post('https://notifyme69.herokuapp.com/api/changepassword/',data,{headers:this.httpheaders});
   }
   SendNotif(data:any): Observable<any>{
     this.str='Token '+sessionStorage.getItem('token');
