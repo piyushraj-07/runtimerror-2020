@@ -1,0 +1,61 @@
+<form class="form-3" [formGroup]="empForm" (ngSubmit)="onSubmit()">
+    <p class="clearfix">
+        <label for="password">Send a Notification</label>
+        <input type="text" name="password" id="password" formControlName="title" placeholder="title"> 
+    </p>
+    <p class="clearfix">
+        <input type="text" name="password" id="password" formControlName="content" placeholder="content"> 
+    </p>
+    <p class="clearfix">
+        <input type="text" name="password" id="password" formControlName="flag" placeholder="Priority"> 
+    </p>
+    <p class="clearfix">
+        <button type="submit">Send</button>
+    </p>
+    </form>
+    <button (click)="func()">List Of students and TA</button>
+    <div *ngIf="flag2">
+        <h3>students</h3>
+        <ul>
+            <li *ngFor="let dic of Dict.students">
+                <h2>{{dic}}</h2>
+            </li>
+        </ul>
+        <h3>TA's</h3>
+        <ul>
+            <li *ngFor="let dic of Dict.tas">
+                <h2>{{dic}}</h2>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <div *ngIf="!varta">
+    <h2>Add a Ta</h2>
+    <form class="form-3" [formGroup]="empForm2" (ngSubmit)="onSubmit1()">
+        <p class="clearfix">
+            <label for="password">username</label>
+            <input type="text" name="password" id="password" formControlName="username" placeholder="username"> 
+        </p>
+        <p class="clearfix">
+            <button type="submit">add TA</button>
+        </p>       
+    </form>
+    <form class="form-3" [formGroup]="empForm3" (ngSubmit)="onSubmit2()">
+        <p class="clearfix">
+            <label for="password">username</label>
+            <input type="text" name="password" id="password" formControlName="username" placeholder="username"> 
+        </p>
+        <p class="clearfix">
+            <button type="submit">remove student</button>
+        </p>       
+    </form>
+   </div>
+    <button (click)="funcnotif()">Notification</button>
+    <div *ngIf="flag1">
+    <ul>
+        <a *ngFor="let notif of notifs" routerLink="/{{notif}}">
+            <h2>{{notif}}</h2>
+        </a>
+    </ul> 
+    </div>
+    

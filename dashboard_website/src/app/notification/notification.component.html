@@ -1,0 +1,14 @@
+<h3>Content</h3>
+<h3>{{Dict.content}}</h3>
+<h3>Title</h3>
+<h3>{{Dict.title}}</h3>
+<h3>Time</h3>
+<h3>{{Dict.time}}</h3>
+<h3>Sender</h3>
+<h3>{{Dict.sender}}</h3>
+<h3>Student who acknowledged</h3>
+<ul>
+    <li *ngFor="let dic of Dict.read">
+        <h2>{{dic}}</h2>
+    </li>
+</ul>
