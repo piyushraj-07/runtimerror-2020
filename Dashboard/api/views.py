@@ -471,12 +471,15 @@ class ConfirmOTP(APIView):
         otp = body['otp']
         email = body['email']
         username = body['username']
-        otpobj = OTP.objects.get(otp=otp)
+        otpobj = OTP.objects.get(OTP=otp)
+        print("gg1")
         if datetime.now()>otpobj.Date + datetime.timedelta(days=0,hours=1):
             return Response("Fail")
+        print("gg2")
         if otpobj.email == email :
             password1=body['password1']
             password2=body['password2']
+            print("gg3")
             if password1 == password2 :
                 user = User.objects.get(username=username)
                 user.set_password(password1)

@@ -9,13 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
 import { NotificationComponent } from './notification/notification.component';
-<<<<<<< HEAD
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
-=======
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from  '@angular/material/toolbar';
->>>>>>> 8485edf7dcb127101c3a1b8edd444b5a1afd61ba
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +25,8 @@ import { MatToolbarModule } from  '@angular/material/toolbar';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-<<<<<<< HEAD
-    MDBBootstrapModule.forRoot(),
-=======
     MatToolbarModule,
     BrowserAnimationsModule,
->>>>>>> 8485edf7dcb127101c3a1b8edd444b5a1afd61ba
   ],
   providers: [],
   bootstrap: [AppComponent]
