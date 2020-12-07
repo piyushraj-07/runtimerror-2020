@@ -10,8 +10,11 @@ export class AuthService {
   str: string ="";
   httpheaders:any;
   constructor(private http: HttpClient ) {}
+  RegisterUser(data: any): Observable<any>{
+    return this.http.post('https://notifyme69.herokuapp.com/api/register/app/',data);
+  }
   LoginUser(data : any): Observable<any>{
-    return this.http.post('https://notifyme69.herokuapp.com/api/login/dashboard/',data); 
+    return this.http.post('https://notifyme69.herokuapp.com/api/login/app/',data); 
   }
   CoursesList(data:any): Observable<any>{
     this.str='Token '+sessionStorage.getItem('token');

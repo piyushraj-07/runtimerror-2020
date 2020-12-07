@@ -57,12 +57,14 @@ export class CoursesComponent implements OnInit {
     this.auth.SendNotif(this.empForm.value).subscribe(
       res => {
         console.log(res);
+        sessionStorage.setItem('temp2','abc');
       },
       error => {
         console.log(error);
+        sessionStorage.setItem('temp2','abc');
       }
     )
-    window.location.reload();
+    if(sessionStorage.getItem('temp2')=='abc') window.location.reload();
   }
   func(){
     this.listdisp=true;
@@ -98,12 +100,14 @@ export class CoursesComponent implements OnInit {
     this.auth.removeStudent(this.empForm3.value).subscribe(
       res => {
         console.log(res);
+        sessionStorage.setItem('temp1','abc');
       },
       error => {
         console.log(error);
+        sessionStorage.setItem('temp1','abc');
       }
     )
-    window.location.reload();
+    if(sessionStorage.getItem('temp1')=='abc') window.location.reload();
   }
   funcnotif(){
     this.listdisp=false;

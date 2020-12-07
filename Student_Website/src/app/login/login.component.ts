@@ -21,19 +21,15 @@ export class LoginComponent implements OnInit {
     console.log(this.empForm.value);
     this.auth.LoginUser(this.empForm.value).subscribe(
       res => {
-        if (res.response == "Fail"){
-          sessionStorage.setItem('state','false');
-          alert("wrong credentials");
-        }
-        else {
-          sessionStorage.setItem('state','true');
-          sessionStorage.setItem('token',res.token);
-          sessionStorage.setItem('username',this.empForm.value.username);
-          sessionStorage.setItem('TA',res.isTa);
-          if(res.isTa==true) alert("Welcome Ta");
-          else alert("Welcome Prof");
-          this.router.navigateByUrl(this.myurl);
-        }
+        console.log(res);
+        sessionStorage.setItem('state','true');
+        sessionStorage.setItem('token',res.token);
+        sessionStorage.setItem('username',this.empForm.value.username);
+        alert("Welcome Student");
+        this.router.navigateByUrl(this.myurl);
+      },
+      error => {
+        alert('Not Registered');
       }
     );
     }

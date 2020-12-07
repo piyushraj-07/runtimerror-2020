@@ -8,11 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  flag=false;
-  flag1=false;
   flag69=false;
   flag70=false;
-  courses=[{title : "cs 213"},{title: "cs 215"}];
+  courses=[{title : ""}];
   empForm = new FormGroup({
     username: new FormControl(''),
     course: new FormControl(''),
@@ -28,9 +26,6 @@ export class HomeComponent implements OnInit {
   constructor(private auth:AuthService,private router: Router) { }
 
   ngOnInit(): void {
-     if(sessionStorage.getItem('TA')=='false') this.flag1=false;
-     else this.flag1=true;
-     this.flag=true;
     this.auth.CoursesList({'username': sessionStorage.getItem('username')}).subscribe(
       res => {
         this.courses=res;
@@ -55,14 +50,18 @@ export class HomeComponent implements OnInit {
     this.auth.ChangePassword(this.empForm1.value).subscribe(
       res => {
         console.log(res);
+        if(res.response=="fail") alert("Unsuccessfull");
+        else alert("password changed successfully");
       },
       error => {
         console.log(error);
+         alert("Unsuccessfull");
       }
     )
   }
   func1(){
     this.flag69=!this.flag69;
+    this.flag70=false;
   }
   func2(){
     sessionStorage.setItem('state','false');
@@ -70,5 +69,6 @@ export class HomeComponent implements OnInit {
   }
   func3(){
     this.flag70=!this.flag70;
+    this.flag69=false;
   }
 }

@@ -45,12 +45,14 @@ export class HomeComponent implements OnInit {
     this.auth.addCourse(this.empForm.value).subscribe(
       res => {
         console.log(res);
+        sessionStorage.setItem('temp','abc');
       },
       error => {
         console.log(error);
+        sessionStorage.setItem('temp','abc');
       }
     )
-    window.location.reload();
+    if(sessionStorage.getItem('temp')=='abc') window.location.reload();
   }
   onSubmit1(){
     this.auth.ChangePassword(this.empForm1.value).subscribe(
@@ -64,6 +66,7 @@ export class HomeComponent implements OnInit {
   }
   func1(){
     this.flag69=!this.flag69;
+    this.flag70=false;
   }
   func2(){
     sessionStorage.setItem('state','false');
@@ -71,5 +74,6 @@ export class HomeComponent implements OnInit {
   }
   func3(){
     this.flag70=!this.flag70;
+    this.flag69=false;
   }
 }
