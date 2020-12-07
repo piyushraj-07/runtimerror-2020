@@ -1,0 +1,24 @@
+<div *ngIf="!flag1">
+<form class="form-3" [formGroup]="empForm" (ngSubmit)="onSubmit()">
+    <p class="clearfix">
+        <label for="password">Coursename</label>
+        <input type="text" name="password" id="password" formControlName="course" placeholder="coursename"> 
+    </p>
+    <p class="clearfix">
+        <label for="password">coursecode</label>
+        <input type="text" name="password" id="password" formControlName="code" placeholder="coursecode"> 
+    </p>
+    <p class="clearfix">
+        <button type="submit">add course</button>
+    </p>       
+</form>
+</div>
+<button (click)="func2()" >Logout</button>
+<button (click)="func1()">See Courses</button>
+<div *ngIf="flag">
+<ul>
+    <a *ngFor="let course of courses" routerLink="/home/{{course}}">
+        <h2>{{course}}</h2>
+    </a>
+</ul>   
+</div>

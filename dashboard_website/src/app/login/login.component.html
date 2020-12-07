@@ -1,0 +1,19 @@
+<div>
+<form class="form-3" [formGroup]="empForm" (ngSubmit)="onSubmit()">
+    <p class="clearfix">
+        <label for="login">Username</label>
+        <input type="text" name="login" id="login" formControlName="username" placeholder="username">
+    </p>
+    <p class="clearfix">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" formControlName="password" placeholder="Password"> 
+    </p>
+    <p class="clearfix">
+        <input type="checkbox" name="remember" id="remember">
+        <label for="remember">Remember me</label>
+    </p>
+    <p class="clearfix">
+        <button type="submit">login</button>
+    </p>       
+</form>
+</div>
