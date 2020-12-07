@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthService] },
   { path: 'home/:courses', component: CoursesComponent,canActivate: [AuthService] },
-  { path: ':notif', component: NotificationComponent,canActivate: [AuthService]},
+  { path: 'notification/:notif', component: NotificationComponent,canActivate: [AuthService]},
 ];
 
 @NgModule({
