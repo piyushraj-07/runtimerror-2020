@@ -1,0 +1,38 @@
+<mat-toolbar>
+    <a  style="cursor: pointer;" (click)="func1()">Add Course</a>
+    <span class="example-spacer"></span>
+    <a  style="cursor: pointer;" (click)="func2()">Logout</a>
+    <span class="example-spacer1"></span>
+    <a  style="cursor: pointer;" (click)="func3()">Change Password</a>
+  </mat-toolbar>
+<div *ngIf="!flag1&&flag69">
+    <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+          <label for="uname"><b>Coursename</b></label>
+          <input type="text" placeholder="Enter Coursename" formControlName="course">
+          <label for="psw"><b>Code</b></label>
+          <input type="text" placeholder="Enter Coursecode" formControlName="code">      
+          <button type="submit">Add course</button>
+        </div>
+      </form>
+</div>
+<div *ngIf="flag70">
+    <form [formGroup]="empForm1" (ngSubmit)="onSubmit1()">
+        <div class="container">
+          <label for="uname"><b>username</b></label>
+          <input type="text" placeholder="usersename" formControlName="username">
+          <label for="psw"><b>Old Password</b></label>
+          <input type="text" placeholder="Old Password" formControlName="oldpassword">
+          <label for="psw"><b>New Password</b></label>
+          <input type="text" placeholder="New Password" formControlName="newpassword">      
+          <button type="submit">Change Password</button>
+        </div>
+      </form>
+</div>
+<div *ngIf="flag">
+<ul>
+    <a class="abc" *ngFor="let course of courses" routerLink="/home/{{course}}">
+        <div class="ex1">{{course}}</div>
+    </a>
+</ul>   
+</div>

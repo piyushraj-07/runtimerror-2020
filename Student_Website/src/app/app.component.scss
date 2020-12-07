@@ -1,0 +1,28 @@
+h1 {
+    position: relative;
+    top: 150px;
+    left: 500px;
+}
+.button {
+    position: relative;
+    top: 220px;
+    left: 570px;
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #2a5a81;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .button:hover {background-color: #3e8e41}
+  
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }

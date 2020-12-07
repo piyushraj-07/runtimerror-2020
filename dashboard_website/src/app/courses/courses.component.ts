@@ -62,6 +62,7 @@ export class CoursesComponent implements OnInit {
         console.log(error);
       }
     )
+    window.location.reload();
   }
   func(){
     this.listdisp=true;
@@ -89,6 +90,7 @@ export class CoursesComponent implements OnInit {
         console.log(error);
       }
     )
+    window.location.reload();
   }
   onSubmit2(){
     console.log(this.empForm3.value);
@@ -101,6 +103,7 @@ export class CoursesComponent implements OnInit {
         console.log(error);
       }
     )
+    window.location.reload();
   }
   funcnotif(){
     this.listdisp=false;

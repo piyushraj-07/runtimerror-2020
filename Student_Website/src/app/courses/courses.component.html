@@ -1,0 +1,75 @@
+<mat-toolbar>
+    <a  style="cursor: pointer;" (click)="func1()">Send Notification</a>
+    <span class="example-spacer1"></span>
+    <a  style="cursor: pointer;" (click)="func2()">Add ta</a>
+    <span class="example-spacer"></span>
+    <a  style="cursor: pointer;" (click)="func3()">Remove student</a>
+</mat-toolbar>
+<div *ngIf="notifflg">
+    <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+          <label for="uname"><b>Title</b></label>
+          <input type="text" placeholder="Enter Title" formControlName="title">
+      
+          <label for="psw"><b>Content</b></label>
+          <input type="text" placeholder="Enter Content" formControlName="content">
+          <label for="psw"><b>Priority</b></label>
+          <br>
+          <input type="radio" value="Hard"  formControlName="flag" >
+          <label>Hard</label>
+          <br>
+          <input type="radio" value="Soft" formControlName="flag">  
+          <label>Soft</label> 
+          <button type="submit">Send</button>
+        </div>
+      </form>      
+    </div>
+    <div *ngIf="!varta&&taflg">
+        <form [formGroup]="empForm2" (ngSubmit)="onSubmit1()">
+            <div class="container">
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" formControlName="username">
+              <button type="submit">Add</button>
+            </div>
+          </form>
+</div>
+<div *ngIf="!varta&&removeflg">
+    <form [formGroup]="empForm3" (ngSubmit)="onSubmit2()">
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" formControlName="username"> 
+          <button type="submit">Remove</button>
+        </div>
+      </form>
+      
+</div>
+<br>
+<mat-toolbar>
+    <a style="cursor: pointer;" (click)="func()">List of Participants</a>
+    <span class="example-spacer"></span>
+    <a style="cursor: pointer;" (click)="funcnotif()">Notification</a>
+</mat-toolbar>
+    <div *ngIf="flag2&&listdisp">
+        <br>
+        <h1>students</h1>
+        <ul>
+            <li *ngFor="let dic of Dict.students">
+                <h2>{{dic}}</h2>
+            </li>
+        </ul>
+        <h1>TA's</h1>
+        <ul>
+            <li *ngFor="let dic of Dict.tas">
+                <h2>{{dic}}</h2>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <div *ngIf="flag1&&notifdisp">
+    <ul>
+        <a *ngFor="let notif of notifs" routerLink="/{{notif}}">
+            <h2>{{notif}}</h2>
+        </a>
+    </ul> 
+    </div>
+    
