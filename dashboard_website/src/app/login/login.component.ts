@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
           else alert("Welcome Prof");
           this.router.navigateByUrl(this.myurl);
         }
+      },
+      error => {
+        alert("wrong credentials");
       }
     );
     }

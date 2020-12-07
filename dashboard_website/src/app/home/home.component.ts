@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     )
+    window.location.reload();
   }
   onSubmit1(){
     this.auth.ChangePassword(this.empForm1.value).subscribe(
