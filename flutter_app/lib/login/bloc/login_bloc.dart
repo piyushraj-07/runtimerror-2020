@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_app/bloc/authentication_bloc.dart';
-import 'package:flutter_app/repository/user_repository.dart';
+import 'package:notiflyer/bloc/authentication_bloc.dart';
+import 'package:notiflyer/repository/user_repository.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_app/globals.dart' as globals;
+import 'package:notiflyer/globals.dart' as globals;
 part 'login_event.dart';
 part 'login_state.dart';
 
