@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_app/login/bloc/login_bloc.dart';
+import 'package:notiflyer/login/bloc/login_bloc.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-//import 'package:flutter_app/model/api_model.dart';
+//import 'package:notiflyer/model/api_model.dart';
 
 final _base = "https://notifyme69.herokuapp.com";
 final _tokenEndpoint = "/api/register/app/";

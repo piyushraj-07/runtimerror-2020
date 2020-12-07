@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_app/repository/user_repository.dart';
+import 'package:notiflyer/repository/user_repository.dart';
 
-import 'package:flutter_app/bloc/authentication_bloc.dart';
-import 'package:flutter_app/splash/splash.dart';
-import 'package:flutter_app/login/login_page.dart';
-import 'package:flutter_app/home/home.dart';
-import 'package:flutter_app/common/common.dart';
+import 'package:notiflyer/bloc/authentication_bloc.dart';
+import 'package:notiflyer/splash/splash.dart';
+import 'package:notiflyer/login/login_page.dart';
+import 'package:notiflyer/home/home.dart';
+import 'package:notiflyer/common/common.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override

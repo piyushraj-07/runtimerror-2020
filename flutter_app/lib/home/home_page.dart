@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:flutter_app/model/api_model.dart';
+//import 'package:notiflyer/model/api_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_app/bloc/authentication_bloc.dart';
+import 'package:notiflyer/bloc/authentication_bloc.dart';
 // ignore: unused_import
 import 'package:flutter_dnd/flutter_dnd.dart';
 import 'package:http/http.dart' as http;
 //import 'package:flutter/material.dart';
-import 'package:flutter_app/globals.dart' as globals;
+import 'package:notiflyer/globals.dart' as globals;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sound_mode/sound_mode.dart';
@@ -356,17 +356,18 @@ class SecondRoute extends StatelessWidget {
     );
     if (response.statusCode == 200) {
       print("holo");
-      //var data = json.decode(response.body) as List;
+      var data = json.decode(response.body);
       //print(data);
       print(response.body);
-      List a = response.body.split('[');
+      List a = data["title"];
       print(a);
-      List b = a[1].split(']');
-      List lists = b[0].split(',');
-      print(lists);
+      globals.notpr = data["priority"];
+      //List b = a[1].split(']');
+      //List lists = b[0].split(',');
+      //print(lists);
       //print(response.body);
       //print(json.decode(response.body));
-      return lists;
+      return a;
     } else {
       print("nolo");
       print(json.decode(response.body).toString());
@@ -377,6 +378,20 @@ class SecondRoute extends StatelessWidget {
   Widget _kildRow(BuildContext context, String pair, int numb) {
     //final alreadySaved = _savedWordPairs.contains(pair);
     pair = pair.replaceAll("\"", "");
+    if (globals.notpr[numb]) {
+      return ListTile(
+          title: Text(pair, style: TextStyle(fontSize: 18.0)),
+          leading: Icon(Icons.priority_high_sharp),
+          trailing: Icon(Icons.arrow_right_alt),
+          onTap: () {
+            globals.notidet = pair;
+            globals.notinum = numb;
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ThirdRoute()),
+            );
+          });
+    }
     return ListTile(
         title: Text(pair, style: TextStyle(fontSize: 18.0)),
         trailing: Icon(Icons.arrow_right_alt),

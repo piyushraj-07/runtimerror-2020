@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_app/repository/user_repository.dart';
-import 'package:flutter_app/model/user_model.dart';
+import 'package:notiflyer/repository/user_repository.dart';
+import 'package:notiflyer/model/user_model.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';

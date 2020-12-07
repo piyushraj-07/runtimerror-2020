@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'package:flutter_app/model/user_model.dart';
+import 'package:notiflyer/model/user_model.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_app/model/api_model.dart';
-import 'package:flutter_app/api_connection/api_connection.dart';
-import 'package:flutter_app/dao/user_dao.dart';
+import 'package:notiflyer/model/api_model.dart';
+import 'package:notiflyer/api_connection/api_connection.dart';
+import 'package:notiflyer/dao/user_dao.dart';
 
 class UserRepository {
   final userDao = UserDao();
