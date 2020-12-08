@@ -26,4 +26,5 @@ urlpatterns = [
     path('logout/',Logout.as_view(),name="logout"),
     path('otp/',SendOTP.as_view(),name="otp"),
     path('confirmotp/',ConfirmOTP.as_view(),name="otp"),
+    path('verify/',VerifyInst.as_view(),name="verification")
 ]
