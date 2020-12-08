@@ -50,6 +50,17 @@ export class CoursesComponent implements OnInit {
     this.newstr=this.newstr.replace(/\//g,"");
     this.newstr=this.newstr.substring(4);
     sessionStorage.setItem('course',this.newstr);
+    this.empForm.value.course=this.newstr;
+    this.empForm.value.username=sessionStorage.getItem('username');
+    this.auth.VerifyInst(this.empForm.value).subscribe(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.log(error);
+        this.router.navigateByUrl("/home");
+      }
+    )
   }
   async onSubmit(){
     this.empForm.value.course=this.newstr;
