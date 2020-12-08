@@ -49,11 +49,9 @@ export class HomeComponent implements OnInit {
   onSubmit1(){
     this.auth.ChangePassword(this.empForm1.value).subscribe(
       res => {
-        console.log(res);
+        if(res.response=='Fail') alert("Unsuccessfull");
+        else alert("Password changed Successfully");
       },
-      error => {
-        console.log(error);
-      }
     )
   }
   func1(){

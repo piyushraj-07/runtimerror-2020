@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
@@ -15,7 +14,6 @@ import { MatToolbarModule } from  '@angular/material/toolbar';
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
     HomeComponent,
     CoursesComponent,
     NotificationComponent,
