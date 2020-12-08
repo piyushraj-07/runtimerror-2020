@@ -53,8 +53,8 @@ class _LoginFormState extends State<LoginForm> {
                       obscureText: true,
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      height: MediaQuery.of(context).size.width * 0.22,
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      height: MediaQuery.of(context).size.width * 0.20,
                       child: Padding(
                         padding: EdgeInsets.only(top: 30.0),
                         child: RaisedButton(
@@ -64,7 +64,7 @@ class _LoginFormState extends State<LoginForm> {
                           child: Text(
                             'Login',
                             style: TextStyle(
-                              fontSize: 24.0,
+                              fontSize: 20.0,
                             ),
                           ),
                           shape: StadiumBorder(
