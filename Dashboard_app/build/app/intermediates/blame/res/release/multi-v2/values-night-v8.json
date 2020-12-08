@@ -1,0 +1,45 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "map": [
+                {
+                    "source": "/home/piyush/Desktop/Dashboard_app/android/app/src/main/res/values-night/styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "172,815",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "464,979"
+                    },
+                    "to": {
+                        "startLines": "6,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "254,551",
+                        "endLines": "10,13",
+                        "endColumns": "12,12",
+                        "endOffsets": "546,715"
+                    }
+                },
+                {
+                    "source": "/home/piyush/Desktop/Dashboard_app/android/app/src/main/res/values-night/colors.xml",
+                    "from": {
+                        "startLines": "4,2,3,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "153,55,102,199",
+                        "endColumns": "45,46,50,54",
+                        "endOffsets": "194,97,148,249"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,101,148,199",
+                        "endColumns": "45,46,50,54",
+                        "endOffsets": "96,143,194,249"
+                    }
+                }
+            ]
+        }
+    ]
+}
