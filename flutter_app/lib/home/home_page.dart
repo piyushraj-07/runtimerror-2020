@@ -38,6 +38,9 @@ class MessageHandler extends StatefulWidget {
   _MessageHandlerState createState() => _MessageHandlerState();
 }
 
+//Starting page with build of list of courses, adding a course, popdown list for logout and change password
+//contains post request for getting list of courses (also sends fcmtoken), adding a course, log_out (to remove fcmtoken from database)
+
 class _MessageHandlerState extends State<MessageHandler> {
   List corlist;
   void ter() {
@@ -47,6 +50,7 @@ class _MessageHandlerState extends State<MessageHandler> {
 
   // ignore: non_constant_identifier_names
   log_out() async {
+    ////logout post request (to remove fcmtoken from database)
     String lop = 'https://notifyme69.herokuapp.com/api/logout/';
     String tpp = "Token " + globals.tokun;
     String pqww = globals.usern;
@@ -55,9 +59,6 @@ class _MessageHandlerState extends State<MessageHandler> {
     final http.Response response = await http.post(
       lop,
       headers: <String, String>{
-        //'Content-Type': 'application/json; charset=UTF-8',
-        //'Vary': 'Accept',
-        //'WWW-Authenticate': globals.tokun,
         'Authorization': tpp,
       },
       body: po,
@@ -66,6 +67,7 @@ class _MessageHandlerState extends State<MessageHandler> {
 
   Future<List> getdata() async {
     if (globals.tokun == "") {
+      //logout if no auth token
       log_out();
       BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
       return [];
@@ -73,35 +75,28 @@ class _MessageHandlerState extends State<MessageHandler> {
     String ringerStatus = await SoundMode.ringerModeStatus;
     print(ringerStatus);
 
-    String lop = 'https://notifyme69.herokuapp.com/api/get_courses/';
+    String lop =
+        'https://notifyme69.herokuapp.com/api/get_courses/'; //post request to get the list of courses
     String tpp = "Token " + globals.tokun;
     String pqww = globals.usern;
     String tokwen = await _fcm.getToken();
-    String po = '{"username":"$pqww","fcmtoken":"$tokwen"}';
+    String po =
+        '{"username":"$pqww","fcmtoken":"$tokwen"}'; //send username and user's fcmtoken to store in database
     print(po);
     print(tpp);
     final http.Response response = await http.post(
       lop,
       headers: <String, String>{
-        //'Content-Type': 'application/json; charset=UTF-8',
-        //'Vary': 'Accept',
-        //'WWW-Authenticate': globals.tokun,
         'Authorization': tpp,
       },
       body: po,
     );
     if (response.statusCode == 200) {
       print("holo");
-      //var data = json.decode(response.body) as List;
-      //print(data);
       String ss = response.body.replaceAll("\"", "");
       List a = ss.split('[');
-      //print(a);
       List b = a[1].split(']');
       List lists = b[0].split(',');
-      //print(lists);
-      //print(response.body);
-      //print(json.decode(response.body));
       return lists;
     } else {
       print("nolo");
@@ -111,13 +106,15 @@ class _MessageHandlerState extends State<MessageHandler> {
   }
 
   Future temp() async {
+    //temp() calls getdata() to get the list of courses
     corlist = await getdata();
     return (corlist);
     //  return p;
   }
 
   Future adcourse() async {
-    String yop = "https://notifyme69.herokuapp.com/api/join_course/";
+    String yop =
+        "https://notifyme69.herokuapp.com/api/join_course/"; //post request to join a course by entering course code
     String tpp = "Token " + globals.tokun;
     String pqww = globals.usern;
     String gggg = _coursecodeController.text;
@@ -125,9 +122,6 @@ class _MessageHandlerState extends State<MessageHandler> {
     final http.Response susponse = await http.post(
       yop,
       headers: <String, String>{
-        //'Content-Type': 'application/json; charset=UTF-8',
-        //'Vary': 'Accept',
-        //'WWW-Authenticate': globals.tokun,
         'Authorization': tpp,
       },
       body: pouu,
@@ -145,7 +139,7 @@ class _MessageHandlerState extends State<MessageHandler> {
       print("unsuc");
       // ignore: deprecated_member_use
       return Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text('Registration Unsuccessfull'),
+        content: Text('Registration Unsuccessful'),
         backgroundColor: Colors.red,
       ));
     }
@@ -156,14 +150,20 @@ class _MessageHandlerState extends State<MessageHandler> {
   @override
   void initState() {
     super.initState();
-    _saveDeviceToken();
     ter();
 
     _fcm.configure(
+      //to receive notificatons (fcm configured)
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
         String md = message['data']['value'];
+        List joo = message['notification']['title'].split(" ");
+        print(joo[0]);
+        if (joo[0] == "Removed") {
+          setState(() {});
+        }
         if ("$md" == "false") {
+          //differentiate between hard and soft notifications
           final snackbar = SnackBar(
             content: Text(message['notification']['title']),
             action: SnackBarAction(
@@ -196,17 +196,17 @@ class _MessageHandlerState extends State<MessageHandler> {
         }
       },
       onLaunch: (Map<String, dynamic> message) async {
+        setState(() {});
         print("onLaunch: $message");
       },
       onResume: (Map<String, dynamic> message) async {
+        setState(() {});
         print("onResume: $message");
       },
     );
   }
 
   Widget _buildRow(String pair) {
-    //final alreadySaved = _savedWordPairs.contains(pair);
-
     return ListTile(
         title: Text(pair, style: TextStyle(fontSize: 18.0)),
         trailing: Icon(Icons.arrow_right_alt),
@@ -220,13 +220,13 @@ class _MessageHandlerState extends State<MessageHandler> {
   }
 
   Widget tuildlist() {
+    //creates list tile containg name of course
     return FutureBuilder(
       future: temp(),
       builder: (context, projectSnap) {
         if (projectSnap.hasData == null ||
             projectSnap.connectionState == ConnectionState.waiting ||
             projectSnap.connectionState == ConnectionState.none) {
-          //print('project snapshot data is: ${projectSnap.data}');
           return Center(child: CircularProgressIndicator());
         }
         return ListView.builder(
@@ -246,6 +246,7 @@ class _MessageHandlerState extends State<MessageHandler> {
 
   @override
   Widget build(BuildContext context) {
+    //actual build of homepage
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
@@ -254,6 +255,7 @@ class _MessageHandlerState extends State<MessageHandler> {
             onSelected: handleClick,
             itemBuilder: (BuildContext context) {
               return {'Change Password', 'Logout'}.map((String choice) {
+                //pop down list of logout and change password
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
@@ -263,9 +265,10 @@ class _MessageHandlerState extends State<MessageHandler> {
           ),
         ],
       ),
-      body: tuildlist(),
+      body: tuildlist(), // actually displays the list of courses
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          //to add a course
           Alert(
               context: context,
               title: "Add a Course",
@@ -284,8 +287,6 @@ class _MessageHandlerState extends State<MessageHandler> {
                 DialogButton(
                   onPressed: () {
                     adcourse();
-
-                    //Navigator.pop(context);
                   },
                   child: Text(
                     "Add",
@@ -301,16 +302,19 @@ class _MessageHandlerState extends State<MessageHandler> {
   }
 
   void handleClick(String value) {
+    //handles on click operation of popdown list of logout and change password
     switch (value) {
       case 'Logout':
         {
           log_out();
-          BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+          BlocProvider.of<AuthenticationBloc>(context)
+              .add(LoggedOut()); //to logout
           break;
         }
       case 'Change Password':
         {
           Navigator.push(
+            //push to a new page containg form for change password
             context,
             MaterialPageRoute(builder: (context) => FourthRoute()),
           );
@@ -319,20 +323,6 @@ class _MessageHandlerState extends State<MessageHandler> {
         }
     }
   }
-
-  /// Get the token, save it to the database for current user
-  _saveDeviceToken() async {
-    // Get the current user
-    // FirebaseUser user = await _auth.currentUser();
-
-    // Get the token for this device
-    String fcmToken = await _fcm.getToken();
-    print(fcmToken);
-    // Save it to Firestore
-  }
-
-  /// Subscribe the user to a topic
-
 }
 
 class SecondRoute extends StatefulWidget {
@@ -340,10 +330,15 @@ class SecondRoute extends StatefulWidget {
   _MeHandlerState createState() => _MeHandlerState();
 }
 
+//Build for list of notifications on pressing a course (after post request)
+//redirection to third route (containg notification details) on clicking that notification tile
+
 class _MeHandlerState extends State<SecondRoute> {
+  //extension of second route
   @override
   // ignore: override_on_non_overriding_member
   Future getcdat() async {
+    //post request to get list of notifications of a particular course (as well as priority and seen/not seen by user)
     String sez = 'https://notifyme69.herokuapp.com/api/get_notifs/';
     String secC = "Token " + globals.tokun;
     String cors = globals.cours;
@@ -354,9 +349,6 @@ class _MeHandlerState extends State<SecondRoute> {
     final http.Response response = await http.post(
       sez,
       headers: <String, String>{
-        //'Content-Type': 'application/json; charset=UTF-8',
-        //'Vary': 'Accept',
-        //'WWW-Authenticate': globals.tokun,
         'Authorization': secC,
       },
       body: po,
@@ -364,17 +356,11 @@ class _MeHandlerState extends State<SecondRoute> {
     if (response.statusCode == 200) {
       print("holo");
       var data = json.decode(response.body);
-      //print(data);
       print(response.body);
       List a = data["titles"];
       print(a);
       globals.notpr = data["priority"];
       globals.notisenn = data["seen"];
-      //List b = a[1].split(']');
-      //List lists = b[0].split(',');
-      //print(lists);
-      //print(response.body);
-      //print(json.decode(response.body));
       return a;
     } else {
       print("nolo");
@@ -384,7 +370,7 @@ class _MeHandlerState extends State<SecondRoute> {
   }
 
   Widget _kildRow(BuildContext context, String pair, int numb) {
-    //final alreadySaved = _savedWordPairs.contains(pair);
+    //build of list tile containing notification title (different cases based on the fact that the notification is seen/not seen, hard/soft)
     pair = pair.replaceAll("\"", "");
     if (globals.notpr[numb]) {
       if (globals.notisenn[numb]) {
@@ -401,7 +387,8 @@ class _MeHandlerState extends State<SecondRoute> {
                 context,
                 MaterialPageRoute(builder: (context) => ThirdRoute()),
               );
-              setState(() {});
+              setState(
+                  () {}); //to refresh the state as the notification is seen
             });
       }
       return ListTile(
@@ -453,7 +440,9 @@ class _MeHandlerState extends State<SecondRoute> {
             //setState(() {});
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ThirdRoute()),
+              MaterialPageRoute(
+                  builder: (context) =>
+                      ThirdRoute()), //on clicking of notification, redirected to a page containg notification details
             );
             setState(() {});
           });
@@ -461,6 +450,7 @@ class _MeHandlerState extends State<SecondRoute> {
   }
 
   Widget notigbuild() {
+    //actual future builder of list of notification
     return FutureBuilder(
       future: getcdat(),
       builder: (context, projectSnap) {
@@ -491,10 +481,13 @@ class _MeHandlerState extends State<SecondRoute> {
   }
 }
 
+//ThirdRoute for building page containg notification details after sending post request
+
 class ThirdRoute extends StatelessWidget {
   @override
   // ignore: override_on_non_overriding_member
   Future getcdat() async {
+    //post request to get notification details
     String sez = 'https://notifyme69.herokuapp.com/api/get_notif_details/';
     String secC = "Token " + globals.tokun;
     int cors = globals.notinum;
@@ -502,13 +495,9 @@ class ThirdRoute extends StatelessWidget {
     String pqww = globals.usern;
     String po = '{"id":"$cors","course":"$coursename","username":"$pqww"}';
     print(po);
-    //print(tpp);
     final http.Response response = await http.post(
       sez,
       headers: <String, String>{
-        //'Content-Type': 'application/json; charset=UTF-8',
-        //'Vary': 'Accept',
-        //'WWW-Authenticate': globals.tokun,
         'Authorization': secC,
       },
       body: po,
@@ -527,14 +516,12 @@ class ThirdRoute extends StatelessWidget {
       return a;
     } else {
       print("nolo");
-      //print(json.decode(response.body).toString());
-      //throw Exception(json.decode(response.body));
       return [];
     }
   }
 
   Widget _kildRow(BuildContext context, String pair) {
-    //final alreadySaved = _savedWordPairs.contains(pair);
+    //to build list tile containg notification details
     pair = pair.replaceAll("\"", "");
     return ListTile(
       title: Text(pair, style: TextStyle(fontSize: 18.0)),
@@ -542,6 +529,7 @@ class ThirdRoute extends StatelessWidget {
   }
 
   Widget notigbuild() {
+    //actual build of the list using builder
     return FutureBuilder(
       future: getcdat(),
       builder: (context, projectSnap) {
@@ -567,10 +555,13 @@ class ThirdRoute extends StatelessWidget {
       appBar: AppBar(
         title: Text('Event Details'),
       ),
-      body: notigbuild(),
+      body: notigbuild(), //to create the list of details as body
     );
   }
 }
+
+//FourthRoute for the build of the change password page (form with 3 textfields)
+//contains post request to change password
 
 class FourthRoute extends StatelessWidget {
   @override
@@ -580,6 +571,7 @@ class FourthRoute extends StatelessWidget {
   final _oldpasswordController = TextEditingController();
   final _newpasswordController = TextEditingController();
   Map<String, dynamic> fun() {
+    //conversion of form entries to json object
     Map<String, dynamic> toDatabaseJson() => {
           "username": _usernameController.text,
           "oldpassword": _oldpasswordController.text,
@@ -589,6 +581,7 @@ class FourthRoute extends StatelessWidget {
   }
 
   Future _changepassword(BuildContext context) async {
+    //post request to change password
     String sez = 'https://notifyme69.herokuapp.com/api/changepassword/';
     String secC = "Token " + globals.tokun;
     //print(tpp);
@@ -596,9 +589,6 @@ class FourthRoute extends StatelessWidget {
     final http.Response response = await http.post(
       sez,
       headers: <String, String>{
-        //'Content-Type': 'application/json; charset=UTF-8',
-        //'Vary': 'Accept',
-        //'WWW-Authenticate': globals.tokun,
         'Authorization': secC,
       },
       body: jsonEncode(fun()),
@@ -630,6 +620,7 @@ class FourthRoute extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
+    //actual build of the page
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(

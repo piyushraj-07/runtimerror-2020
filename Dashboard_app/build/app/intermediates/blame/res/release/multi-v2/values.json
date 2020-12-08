@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values/values.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/fdb7f764bae631c34cad86862de08b65/core-1.1.0/res/values/values.xml",
@@ -20,23 +20,6 @@
                         "endLines": "14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,89,117,126,130,131,135,136,137,138,145,188,220,257,264",
                         "endColumns": "68,62,57,73,69,67,71,69,60,73,72,60,60,61,63,61,60,67,99,59,65,72,68,56,51,61,71,75,64,58,58,59,59,59,59,59,59,59,59,59,59,58,59,59,59,59,59,59,59,59,59,59,58,59,59,58,58,58,58,58,58,34,34,54,62,54,57,56,49,60,56,33,34,34,69,70,116,12,109,12,128,71,66,24,24,24,24,24",
                         "endOffsets": "1039,1102,1160,1234,1304,1372,1444,1514,1575,1649,1722,1783,1844,1906,1970,2032,2093,2161,2261,2321,2387,2460,2529,2586,2638,2700,2772,2848,2913,2972,3031,3091,3151,3211,3271,3331,3391,3451,3511,3571,3631,3690,3750,3810,3870,3930,3990,4050,4110,4170,4230,4290,4349,4409,4469,4528,4587,4646,4705,4764,4823,4858,4893,4948,5011,5066,5124,5181,5231,5292,5349,5383,5418,5453,5591,8933,9516,9717,9827,10028,10157,10229,10296,10594,13500,15565,17325,17702"
-                    }
-                },
-                {
-                    "source": "/home/piyush/AndroidStudioProjects/dashboard_app/build/app/generated/res/google-services/release/values/values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,313,395,499,608,728,831",
-                        "endColumns": "143,113,81,103,108,119,102,79",
-                        "endOffsets": "194,308,390,494,603,723,826,906"
-                    },
-                    "to": {
-                        "startLines": "108,110,111,112,113,114,115,116",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "7929,8155,8269,8351,8455,8564,8684,8787",
-                        "endColumns": "143,113,81,103,108,119,102,79",
-                        "endOffsets": "8068,8264,8346,8450,8559,8679,8782,8862"
                     }
                 },
                 {
@@ -76,7 +59,43 @@
                     }
                 },
                 {
-                    "source": "/home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/res/values/colors.xml",
+                    "source": "/home/piyush/Desktop/Dashboard_app/build/app/generated/res/google-services/release/values/values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,313,395,499,608,728,831",
+                        "endColumns": "143,113,81,103,108,119,102,79",
+                        "endOffsets": "194,308,390,494,603,723,826,906"
+                    },
+                    "to": {
+                        "startLines": "108,110,111,112,113,114,115,116",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "7929,8155,8269,8351,8455,8564,8684,8787",
+                        "endColumns": "143,113,81,103,108,119,102,79",
+                        "endOffsets": "8068,8264,8346,8450,8559,8679,8782,8862"
+                    }
+                },
+                {
+                    "source": "/home/piyush/Desktop/Dashboard_app/android/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,816",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "465,980"
+                    },
+                    "to": {
+                        "startLines": "118,123",
+                        "startColumns": "4,4",
+                        "startOffsets": "8938,9235",
+                        "endLines": "122,125",
+                        "endColumns": "12,12",
+                        "endOffsets": "9230,9399"
+                    }
+                },
+                {
+                    "source": "/home/piyush/Desktop/Dashboard_app/android/app/src/main/res/values/colors.xml",
                     "from": {
                         "startLines": "4,2,3,5",
                         "startColumns": "4,4,4,4",
@@ -107,25 +126,6 @@
                         "startOffsets": "8073",
                         "endColumns": "81",
                         "endOffsets": "8150"
-                    }
-                },
-                {
-                    "source": "/home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/res/values/styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "173,816",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "465,980"
-                    },
-                    "to": {
-                        "startLines": "118,123",
-                        "startColumns": "4,4",
-                        "startOffsets": "8938,9235",
-                        "endLines": "122,125",
-                        "endColumns": "12,12",
-                        "endOffsets": "9230,9399"
                     }
                 }
             ]

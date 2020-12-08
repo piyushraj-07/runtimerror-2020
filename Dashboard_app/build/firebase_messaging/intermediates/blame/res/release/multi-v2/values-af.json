@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/res/merged/release/values-af/values-af.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/incremental/mergeReleaseResources/merged.dir/values-af/values-af.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/res/values-af/values.xml",
@@ -74,7 +74,7 @@
             ]
         },
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/incremental/mergeReleaseResources/merged.dir/values-af/values-af.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/res/merged/release/values-af/values-af.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/res/values-af/values.xml",

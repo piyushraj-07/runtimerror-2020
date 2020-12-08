@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/sound_mode/intermediates/res/merged/release/values-nb/values-nb.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/sound_mode/intermediates/res/merged/release/values-nb/values-nb.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/fdb7f764bae631c34cad86862de08b65/core-1.1.0/res/values-nb/values-nb.xml",
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/sound_mode/intermediates/incremental/mergeReleaseResources/merged.dir/values-nb/values-nb.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/sound_mode/intermediates/incremental/mergeReleaseResources/merged.dir/values-nb/values-nb.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/fdb7f764bae631c34cad86862de08b65/core-1.1.0/res/values-nb/values-nb.xml",
