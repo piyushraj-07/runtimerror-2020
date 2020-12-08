@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/res/merged/release/values-en-rGB/values-en-rGB.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/res/merged/release/values-en-rGB/values-en-rGB.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/fdb7f764bae631c34cad86862de08b65/core-1.1.0/res/values-en-rGB/values-en-rGB.xml",
@@ -74,7 +74,7 @@
             ]
         },
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/incremental/mergeReleaseResources/merged.dir/values-en-rGB/values-en-rGB.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/incremental/mergeReleaseResources/merged.dir/values-en-rGB/values-en-rGB.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/fdb7f764bae631c34cad86862de08b65/core-1.1.0/res/values-en-rGB/values-en-rGB.xml",

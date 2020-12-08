@@ -584,7 +584,7 @@ class VerifyInst(APIView):
         coursename = body['course']
         course = Course.objects.get(name=coursename)
         user = User.objects.get(username=username)
-        if user in course.instructors or user in course.tas :
+        if user in course.instructors.all() or user in course.tas.all() :
             return Response("Success")
         else :
             return Response(status=401)

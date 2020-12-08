@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-es/values-es.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-es/values-es.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/c6dd8f0dd025fb534d96453a90eb96a2/play-services-base-17.0.0/res/values-es/values.xml",

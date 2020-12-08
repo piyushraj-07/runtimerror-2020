@@ -10,12 +10,16 @@ final _base = "https://notifyme69.herokuapp.com";
 final _tokenEndpoint = "/api/register/app/";
 final _tokenURL = _base + _tokenEndpoint;
 
+//LoginForm conatins build for login(initial) page
+//login post request in lib/api_connection/
+
 class LoginForm extends StatefulWidget {
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
+  //build for initial login page along with post request
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -148,6 +152,8 @@ class _LoginFormState extends State<LoginForm> {
   }
 }
 
+// SecondRoute conatins build for Sign up page (also contains post request)
+
 class SecondRoute extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _usernameController = TextEditingController();
@@ -167,6 +173,7 @@ class SecondRoute extends StatelessWidget {
     }
 
     Future getToken(BuildContext context) async {
+      //post request to register(sign up) a user
       print(_tokenURL);
       print(jsonEncode(fun()));
       print("kokoko");
@@ -174,8 +181,6 @@ class SecondRoute extends StatelessWidget {
         _tokenURL,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          //'Accept': 'application/json;',
-          //'Authorization': '<Your token>',
           'Connection': 'Keep-Alive',
           'Keep-Alive': 'timeout=5, max=1000',
           'Accept-Encoding': 'gzip, deflate, br',
@@ -218,6 +223,7 @@ class SecondRoute extends StatelessWidget {
     }
 
     return Scaffold(
+      //actual build of sign up page
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Sign Up'),
@@ -286,6 +292,9 @@ class SecondRoute extends StatelessWidget {
   }
 }
 
+//ThirdRoute contains build for forgot password page
+//contains post request for sending OTP as well as changing password
+
 class ThirdRoute extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _usernameController = TextEditingController();
@@ -296,6 +305,7 @@ class ThirdRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, dynamic> fun() {
       Map<String, dynamic> toDatabaseJson() => {
+            //conversion of form fields to json
             "email": _emailController.text,
             "username": _usernameController.text,
             "password1": _passwordController.text,
@@ -306,6 +316,7 @@ class ThirdRoute extends StatelessWidget {
     }
 
     Future passwordchange(BuildContext context) async {
+      //post request to finally change password after entering correct OTP
       print(jsonEncode(fun()));
       String otpurl = 'https://notifyme69.herokuapp.com/api/confirmotp/';
       final http.Response response = await http.post(
@@ -344,8 +355,7 @@ class ThirdRoute extends StatelessWidget {
     }
 
     Future sendotp(BuildContext context) async {
-      //print(_tokenURL);
-      //print(jsonEncode(fun()));
+      //post request to send OTP to registered email
       print("kokoko");
       String otpurl = 'https://notifyme69.herokuapp.com/api/otp/';
       String userr = _usernameController.text;
@@ -383,6 +393,7 @@ class ThirdRoute extends StatelessWidget {
     }
 
     return Scaffold(
+      //actual display/build of the page
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Change Password'),

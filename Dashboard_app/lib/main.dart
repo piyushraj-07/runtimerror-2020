@@ -51,8 +51,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.red,
-        brightness: Brightness.dark,
+        primarySwatch: Colors.green,
+        brightness: Brightness.light,
       ),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         // ignore: missing_return

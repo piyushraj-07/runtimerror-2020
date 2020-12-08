@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/incremental/mergeReleaseResources/merged.dir/values-sk/values-sk.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/res/merged/release/values-sk/values-sk.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/a42d909c5ef18095550c68562a07777b/jetified-play-services-basement-17.0.0/res/values-sk/values.xml",
@@ -40,7 +40,7 @@
             ]
         },
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/res/merged/release/values-sk/values-sk.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/incremental/mergeReleaseResources/merged.dir/values-sk/values-sk.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/a42d909c5ef18095550c68562a07777b/jetified-play-services-basement-17.0.0/res/values-sk/values.xml",

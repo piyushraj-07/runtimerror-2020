@@ -1,15 +1,15 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
-MERGED from [:flutter_dnd] /home/piyush/AndroidStudioProjects/dashboard_app/build/flutter_dnd/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
-MERGED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:2:1-20:12
-MERGED from [:sqflite] /home/piyush/AndroidStudioProjects/dashboard_app/build/sqflite/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
-MERGED from [:sound_mode] /home/piyush/AndroidStudioProjects/dashboard_app/build/sound_mode/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
-MERGED from [:path_provider] /home/piyush/AndroidStudioProjects/dashboard_app/build/path_provider/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
-MERGED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:2:1-15:12
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
+MERGED from [:flutter_dnd] /home/piyush/Desktop/Dashboard_app/build/flutter_dnd/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:2:1-20:12
+MERGED from [:sqflite] /home/piyush/Desktop/Dashboard_app/build/sqflite/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:sound_mode] /home/piyush/Desktop/Dashboard_app/build/sound_mode/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] /home/piyush/Desktop/Dashboard_app/build/path_provider/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
+MERGED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:2:1-15:12
 MERGED from [com.google.firebase:firebase-messaging:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/AndroidManifest.xml:17:1-45:12
 MERGED from [com.google.firebase:firebase-iid:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/faf520454664e97ee8349017f50edac4/firebase-iid-20.3.0/AndroidManifest.xml:17:1-47:12
 MERGED from [com.google.firebase:firebase-core:17.5.1] /home/piyush/.gradle/caches/transforms-2/files-2.1/5b1231bee0f730cb5b8d30bf6df8b0ee/firebase-core-17.5.1/AndroidManifest.xml:2:1-9:12
@@ -54,29 +54,29 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/piyush/.gradle/
 MERGED from [androidx.documentfile:documentfile:1.0.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/c9b2d7ceb417280870b2e4b56bb7ccf7/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/9764f1b78bfcb75454627bb577c55ef5/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/6580daa47ce625a5d6f79979ccf045b6/transport-api-2.2.0/AndroidManifest.xml:15:1-22:12
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
 	package
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:2:5-38
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:2:5-40
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:1-45:12
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:1:11-69
 application
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:3:4-44:19
-MERGED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:7:5-18:19
-MERGED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:7:5-18:19
-MERGED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:3:4-44:19
+MERGED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:7:5-18:19
+MERGED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:7:5-18:19
+MERGED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
 MERGED from [com.google.firebase:firebase-messaging:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/AndroidManifest.xml:22:5-43:19
 MERGED from [com.google.firebase:firebase-messaging:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/AndroidManifest.xml:22:5-43:19
 MERGED from [com.google.firebase:firebase-iid:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/faf520454664e97ee8349017f50edac4/firebase-iid-20.3.0/AndroidManifest.xml:28:5-45:19
@@ -126,77 +126,77 @@ MERGED from [com.google.android.datatransport:transport-runtime:2.2.0] /home/piy
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/fdb7f764bae631c34cad86862de08b65/core-1.1.0/AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:4:9-36
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:4:9-38
 	android:icon
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:5:9-37
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:5:9-37
 activity#com.example.dashboard_app.MainActivity
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:6:9-38:20
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:6:9-38:20
 	android:launchMode
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:8:13-43
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:8:13-43
 	android:hardwareAccelerated
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:11:13-47
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:11:13-47
 	android:windowSoftInputMode
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:12:13-55
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:12:13-55
 	android:configChanges
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:10:13-163
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:10:13-163
 	android:theme
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:9:13-47
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:9:13-47
 	android:name
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:7:13-41
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:7:13-41
 meta-data#io.flutter.embedding.android.NormalTheme
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:17:13-20:17
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:17:13-20:17
 	android:resource
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:19:15-52
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:19:15-52
 	android:name
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:18:15-70
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:18:15-70
 meta-data#io.flutter.embedding.android.SplashScreenDrawable
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:26:13-29:17
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:26:13-29:17
 	android:resource
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:28:15-61
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:28:15-61
 	android:name
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:27:15-79
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:27:15-79
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:30:13-33:29
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:30:13-33:29
 action#android.intent.action.MAIN
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:31:17-68
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:31:17-68
 	android:name
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:31:25-66
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:31:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:32:17-76
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:32:17-76
 	android:name
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:32:27-74
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:32:27-74
 intent-filter#action:name:FLUTTER_NOTIFICATION_CLICK+category:name:android.intent.category.DEFAULT
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:34:13-37:29
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:34:13-37:29
 action#FLUTTER_NOTIFICATION_CLICK
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:35:17-68
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:35:17-68
 	android:name
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:35:25-66
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:35:25-66
 category#android.intent.category.DEFAULT
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:36:17-75
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:36:17-75
 	android:name
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:36:27-73
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:36:27-73
 meta-data#flutterEmbedding
-ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:41:9-43:33
+ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:41:9-43:33
 	android:value
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:43:13-30
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:43:13-30
 	android:name
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml:42:13-44
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml:42:13-44
 uses-sdk
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-MERGED from [:flutter_dnd] /home/piyush/AndroidStudioProjects/dashboard_app/build/flutter_dnd/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:flutter_dnd] /home/piyush/AndroidStudioProjects/dashboard_app/build/flutter_dnd/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:sqflite] /home/piyush/AndroidStudioProjects/dashboard_app/build/sqflite/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:sqflite] /home/piyush/AndroidStudioProjects/dashboard_app/build/sqflite/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:sound_mode] /home/piyush/AndroidStudioProjects/dashboard_app/build/sound_mode/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:sound_mode] /home/piyush/AndroidStudioProjects/dashboard_app/build/sound_mode/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:path_provider] /home/piyush/AndroidStudioProjects/dashboard_app/build/path_provider/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:path_provider] /home/piyush/AndroidStudioProjects/dashboard_app/build/path_provider/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+MERGED from [:flutter_dnd] /home/piyush/Desktop/Dashboard_app/build/flutter_dnd/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:flutter_dnd] /home/piyush/Desktop/Dashboard_app/build/flutter_dnd/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/piyush/Desktop/Dashboard_app/build/sqflite/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /home/piyush/Desktop/Dashboard_app/build/sqflite/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:sound_mode] /home/piyush/Desktop/Dashboard_app/build/sound_mode/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:sound_mode] /home/piyush/Desktop/Dashboard_app/build/sound_mode/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/piyush/Desktop/Dashboard_app/build/path_provider/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /home/piyush/Desktop/Dashboard_app/build/path_provider/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-messaging:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-messaging:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-iid:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/faf520454664e97ee8349017f50edac4/firebase-iid-20.3.0/AndroidManifest.xml:20:5-44
@@ -285,30 +285,30 @@ MERGED from [androidx.print:print:1.0.0] /home/piyush/.gradle/caches/transforms-
 MERGED from [androidx.print:print:1.0.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/9764f1b78bfcb75454627bb577c55ef5/print-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/6580daa47ce625a5d6f79979ccf045b6/transport-api-2.2.0/AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-api:2.2.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/6580daa47ce625a5d6f79979ccf045b6/transport-api-2.2.0/AndroidManifest.xml:18:5-20:41
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-		ADDED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
-		INJECTED from /home/piyush/AndroidStudioProjects/dashboard_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/piyush/Desktop/Dashboard_app/android/app/src/main/AndroidManifest.xml
 service#io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingService
-ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
+ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
 	android:name
-		ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:8:18-101
+		ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:8:18-101
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:29
+ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:10:17-78
+ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:10:17-78
 	android:name
-		ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:10:25-75
+		ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:10:25-75
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:13:9-17:19
-MERGED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
+ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:13:9-17:19
+MERGED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
 MERGED from [com.google.firebase:firebase-messaging:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/AndroidManifest.xml:36:9-42:19
 MERGED from [com.google.firebase:firebase-messaging:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/AndroidManifest.xml:36:9-42:19
 MERGED from [com.google.firebase:firebase-iid:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/faf520454664e97ee8349017f50edac4/firebase-iid-20.3.0/AndroidManifest.xml:29:9-35:19
@@ -328,19 +328,19 @@ MERGED from [com.google.firebase:firebase-common:19.3.0] /home/piyush/.gradle/ca
 	android:directBootAware
 		ADDED from [com.google.firebase:firebase-common:19.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/4759133eaaa18e34b630295b33bb1437/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
 	android:name
-		ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:13:18-89
+		ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:13:18-89
 meta-data#com.google.firebase.components:io.flutter.plugins.firebasemessaging.FlutterFirebaseAppRegistrar
-ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:14:13-16:85
+ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:14:13-16:85
 	android:value
-		ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:16:17-82
+		ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:16:17-82
 	android:name
-		ADDED from [:firebase_messaging] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:15:17-127
+		ADDED from [:firebase_messaging] /home/piyush/Desktop/Dashboard_app/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:15:17-127
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar
-ADDED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:85
+ADDED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:85
 	android:value
-		ADDED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:11:17-82
+		ADDED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:11:17-82
 	android:name
-		ADDED from [:firebase_core] /home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:10:17-124
+		ADDED from [:firebase_core] /home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:10:17-124
 service#com.google.firebase.messaging.FirebaseMessagingService
 ADDED from [com.google.firebase:firebase-messaging:20.3.0] /home/piyush/.gradle/caches/transforms-2/files-2.1/2eb5743e936bf7c5f13804a97bbfff5a/jetified-firebase-messaging-20.3.0/AndroidManifest.xml:28:9-35:19
 	android:exported

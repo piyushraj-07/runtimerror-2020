@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/incremental/mergeReleaseResources/merged.dir/values-mr/values-mr.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/res/merged/release/values-mr/values-mr.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/fdb7f764bae631c34cad86862de08b65/core-1.1.0/res/values-mr/values-mr.xml",
@@ -40,7 +40,7 @@
             ]
         },
         {
-            "outputFile": "/home/piyush/AndroidStudioProjects/dashboard_app/build/firebase_core/intermediates/res/merged/release/values-mr/values-mr.xml",
+            "outputFile": "/home/piyush/Desktop/Dashboard_app/build/firebase_core/intermediates/incremental/mergeReleaseResources/merged.dir/values-mr/values-mr.xml",
             "map": [
                 {
                     "source": "/home/piyush/.gradle/caches/transforms-2/files-2.1/fdb7f764bae631c34cad86862de08b65/core-1.1.0/res/values-mr/values-mr.xml",
