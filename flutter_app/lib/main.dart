@@ -9,6 +9,7 @@ import 'package:notiflyer/splash/splash.dart';
 import 'package:notiflyer/login/login_page.dart';
 import 'package:notiflyer/home/home.dart';
 import 'package:notiflyer/common/common.dart';
+import 'globals.dart' as globals;
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -44,9 +45,7 @@ void main() {
 
 class App extends StatelessWidget {
   final UserRepository userRepository;
-
   App({Key key, @required this.userRepository}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

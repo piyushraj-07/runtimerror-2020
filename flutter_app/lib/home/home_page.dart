@@ -66,6 +66,9 @@ class _MessageHandlerState extends State<MessageHandler> {
   }
 
   Future<List> getdata() async {
+    print("kkkkk");
+    print(globals.tokun);
+    print("hweew");
     if (globals.tokun == "") {
       //logout if no auth token
       log_out();

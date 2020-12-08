@@ -1,5 +1,6 @@
 import 'package:notiflyer/database/user_database.dart';
 import 'package:notiflyer/model/user_model.dart';
+import 'package:notiflyer/globals.dart' as globals;
 
 class UserDao {
   final dbProvider = DatabaseProvider.dbProvider;
@@ -23,6 +24,9 @@ class UserDao {
       List<Map> users =
           await db.query(userTable, where: 'id = ?', whereArgs: [id]);
       if (users.length > 0) {
+        globals.tokun = users[0]['token'];
+        globals.usern = users[0]['username'];
+        print(users[0]);
         return true;
       } else {
         return false;

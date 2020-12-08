@@ -4,6 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:notiflyer/model/api_model.dart';
 import 'package:notiflyer/api_connection/api_connection.dart';
 import 'package:notiflyer/dao/user_dao.dart';
+import 'package:notiflyer/globals.dart' as globals;
 
 class UserRepository {
   final userDao = UserDao();
@@ -19,6 +20,7 @@ class UserRepository {
       username: username,
       token: token.token,
     );
+    globals.tokun = user.token;
     return user;
   }
 
