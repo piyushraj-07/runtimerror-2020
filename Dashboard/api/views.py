@@ -140,7 +140,7 @@ class CourseViewInstructors(APIView):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         username = body['username']
-        user = User.objects.get(username=username)gi
+        user = User.objects.get(username=username)
         data = {}
         instruct = Instructor.objects.get(user=user)
         l=[]
@@ -508,8 +508,10 @@ class RemoveStudent(APIView):
         stud.save()
         fcm_token=[stud.token]
         data={}
+        FCM_SERVER_KEY="AAAAgzHL4tY:APA91bHuZKqD66nhGAhW647HIlnNcmTcWF0GMa4ymFd_SHAqLDdQZaOMgdkBvh6YgD5BknyvcQoNcpDaf7N8NpmCjpTicDzMousJYI-Vms8aa4ceikbp4YflPP4T08bKeiWdronkt6Bj"
+        push_service = FCMNotification(api_key=FCM_SERVER_KEY)
         push_service.notify_multiple_devices(
-                    registration_ids=fcm_token,message_title="Removed From"+coursename,
+                    registration_ids=fcm_token,message_title="Removed From "+coursename,
                     message_body="You were removed from this course by the instructor", data_message=data)
         return Response("Success")
     
