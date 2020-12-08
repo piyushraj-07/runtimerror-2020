@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   flag1=false;
   flag69=false;
   flag70=false;
-  courses=[{title : "cs 213"},{title: "cs 215"}];
+  courses=[];
   empForm = new FormGroup({
     username: new FormControl(''),
     course: new FormControl(''),
@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
      this.flag=true;
     this.auth.CoursesList({'username': sessionStorage.getItem('username')}).subscribe(
       res => {
+        console.log(res);
         this.courses=res;
       },
       error => {

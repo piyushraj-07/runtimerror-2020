@@ -18,6 +18,7 @@ export class NotificationComponent implements OnInit {
   ngOnInit(): void {
     this.newstr=this.router.url.replace(/%20/g," ");
     this.newstr=this.newstr.replace(/\//g,"");
+    this.newstr=this.newstr.substring(12);
     this.empForm.value.course=sessionStorage.getItem('course');
     this.empForm.value.name=this.newstr;
     this.auth.getNotifDetails(this.empForm.value).subscribe(

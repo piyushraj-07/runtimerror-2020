@@ -51,20 +51,11 @@ export class CoursesComponent implements OnInit {
     this.newstr=this.newstr.substring(4);
     sessionStorage.setItem('course',this.newstr);
   }
-  onSubmit(){
+  async onSubmit(){
     this.empForm.value.course=this.newstr;
     this.empForm.value.username=sessionStorage.getItem('username');
-    this.auth.SendNotif(this.empForm.value).subscribe(
-      res => {
-        console.log(res);
-        sessionStorage.setItem('temp2','abc');
-      },
-      error => {
-        console.log(error);
-        sessionStorage.setItem('temp2','abc');
-      }
-    )
-    if(sessionStorage.getItem('temp2')=='abc') window.location.reload();
+    await this.auth.SendNotif(this.empForm.value);
+    window.location.reload();
   }
   func(){
     this.listdisp=true;
@@ -87,27 +78,26 @@ export class CoursesComponent implements OnInit {
     this.auth.addTA(this.empForm2.value).subscribe(
       res => {
         console.log(res);
+        alert("Ta added");
       },
       error => {
         console.log(error);
+        alert("Ta not registered");
       }
     )
-    window.location.reload();
   }
   onSubmit2(){
-    console.log(this.empForm3.value);
     this.empForm3.value.course=this.newstr;
     this.auth.removeStudent(this.empForm3.value).subscribe(
       res => {
         console.log(res);
-        sessionStorage.setItem('temp1','abc');
+        alert("Student removed successfully");
       },
       error => {
         console.log(error);
-        sessionStorage.setItem('temp1','abc');
+        alert("No such student");
       }
     )
-    if(sessionStorage.getItem('temp1')=='abc') window.location.reload();
   }
   funcnotif(){
     this.listdisp=false;

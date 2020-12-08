@@ -1,3 +1,4 @@
+<!--
 <mat-toolbar>
     <a  style="cursor: pointer;" (click)="func1()">Send Notification</a>
     <span class="example-spacer1"></span>
@@ -65,9 +66,12 @@
         </ul>
     </div>
     <br>
-    <div *ngIf="flag1&&notifdisp">
+    -->
+    <h1>Notification</h1>
+    <br>
+    <div>
     <ul>
-        <a *ngFor="let notif of notifs" routerLink="/{{notif}}">
+        <a *ngFor="let notif of notifs" routerLink="/notification/{{notif}}">
             <h2>{{notif}}</h2>
         </a>
     </ul> 
