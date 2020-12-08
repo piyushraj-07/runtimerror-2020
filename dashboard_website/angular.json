@@ -34,7 +34,9 @@
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
-            "scripts": []
+              
+            "scripts": ["node_modules/chart.js/dist/Chart.js",
+              "node_modules/hammerjs/hammer.min.js"]
           },
           "configurations": {
             "production": {
@@ -129,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "dashboard"
+  "defaultProject": "dashboard",
+  "cli": {
+    "analytics": "b4412138-6823-4fbf-97d6-86f4d8564e25"
+  }
 }

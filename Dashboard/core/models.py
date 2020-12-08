@@ -37,3 +37,8 @@ class Instructor(models.Model):
     is_ta = models.BooleanField(default=False)
     def __str__(self):
         return User.get_username(self.user) + " - is_instructor"
+
+class OTP(models.Model):
+    email = models.EmailField(max_length=255)
+    OTP = models.CharField(max_length=6)
+    Date = models.DateTimeField(auto_now=True)
