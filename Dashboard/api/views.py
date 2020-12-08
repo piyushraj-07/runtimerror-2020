@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
 import datetime
-
+import time
 # Create your views here.
 from .serializers import UserSerializer
 from rest_framework.views import APIView
@@ -198,6 +198,36 @@ class NotifViewStudents(APIView):
         data['seen']=g
         return Response(data)      
 
+class NotifViewStudentsWeb(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request,format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        coursename = body['course']
+        username = body['username']
+        print(coursename, username)
+        course = Course.objects.get(name=coursename)
+        notifs = list(Notification.objects.filter(course=course))
+        data = {}
+        l=[]
+        k=[]
+        g=[]
+        ind = 0
+        for i in notifs[::-1] :
+            l.append(str(ind+1)+ " " + i.Title_text)
+            ind+=1
+            k.append(i.priority)
+            try :
+                user = i.ReadBy.get(username=username)
+                print(user)
+                g.append(True)
+            except:
+                g.append(False)
+        print("gg")
+        data['titles']=l
+        data['priority']=k
+        data['seen']=g
+        return Response(data)      
 class NotifViewInst(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request,format=None):
@@ -262,6 +292,7 @@ class getNotifDetails(APIView):
         data['title']=reqnotif.Title_text
         return Response(data)
 
+
 class Logout(APIView):
     permission_classes = [IsAuthenticated]
     def post(self,request, format=None):
@@ -287,6 +318,7 @@ class getNotifDetailsInst(APIView):
         course = Course.objects.get(name=coursename)
         print(course)
         notifs = list(Notification.objects.filter(course=course))
+        notifs = notifs[::-1]
         print(notifs)
         reqnotif = notifs[notif_id]
         data = {}
@@ -299,7 +331,40 @@ class getNotifDetailsInst(APIView):
             l.append(i.username)
         data["read"]=l
         return Response(data)
+
+class getNotifDetailsStudentsWeb(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        coursename = body['course']
+        notif_id = list(body['name'].split())
+        username = body['username']
+        user = User.objects.get(username=username)
+        notif_id=int(notif_id[0])
+        notif_id-=1
+        print(coursename,notif_id)
+        course = Course.objects.get(name=coursename)
+        print(course)
+        notifs = list(Notification.objects.filter(course=course))
+        notifs=notifs[::-1]
+        print(notifs)
+        reqnotif = notifs[notif_id]
+        data = {}
+        if user in reqnotif.ReadBy.all():
+            data['seen']=True
+        else :
+            data['seen']=False
+            reqnotif.ReadBy.add(user)
+            reqnotif.save()
         
+        data['content']=reqnotif.Content_text
+        data['time']=reqnotif.created_at
+        data['sender']=reqnotif.Sentby.username
+        data['title']=reqnotif.Title_text
+        data['priority']=reqnotif.priority
+        
+        return Response(data)
 class sendNotif(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request , format=None ):
@@ -320,21 +385,32 @@ class sendNotif(APIView):
         notif.save()
         FCM_SERVER_KEY="AAAAgzHL4tY:APA91bHuZKqD66nhGAhW647HIlnNcmTcWF0GMa4ymFd_SHAqLDdQZaOMgdkBvh6YgD5BknyvcQoNcpDaf7N8NpmCjpTicDzMousJYI-Vms8aa4ceikbp4YflPP4T08bKeiWdronkt6Bj"
         push_service = FCMNotification(api_key=FCM_SERVER_KEY)
-        fcm_token = []
-        for i in Student.objects.filter(courses=course):
-            print(i,course)
-            fcm_token.append(i.token)
-        print(fcm_token,title,content,user,content)
         data={}
         data['value']=notif.priority
         if(notif.priority):
-            extra_notification_kwargs = {
-            'image':  "https://miro.medium.com/max/2710/1*VYhexO08Zwwg9Woa_VLeSA.jpeg"
-            }
-            push_service.notify_multiple_devices(
-                registration_ids=fcm_token,message_title=title,
-                message_body=content, data_message=data,extra_notification_kwargs=extra_notification_kwargs)
+            n=10
+            while (True) :
+                fcm_token=[]
+                for i in Student.objects.filter(courses=course):
+                    if i.user in notif.ReadBy.all():
+                        continue
+                    print(i,course)
+                    fcm_token.append(i.token)
+                if (len(fcm_token)==0):
+                    break
+                extra_notification_kwargs = {
+                    'image':  "https://miro.medium.com/max/2710/1*VYhexO08Zwwg9Woa_VLeSA.jpeg"
+                }
+                push_service.notify_multiple_devices(
+                    registration_ids=fcm_token,message_title=title,
+                    message_body=content, data_message=data,extra_notification_kwargs=extra_notification_kwargs)
+                n-=1
+                time.sleep(10)
         else :
+            fcm_token=[]
+            for i in Student.objects.filter(courses=course):
+                print(i,course)
+                fcm_token.append(i.token)
             extra_notification_kwargs = {
             'sound':None
             }
@@ -461,6 +537,7 @@ class SendOTP(APIView):
         email = body['email']
         otp = ''.join([str(random.randint(0, 999)).zfill(3) for _ in range(2)])
         newotp = OTP(OTP=otp,email=email)
+        newotp.save()
         send_mail('OTP for reseting password',"Your otp is " + otp , 'notiflyer69@gmail.com',[email],fail_silently=False)
         return Response("Success")
 
@@ -473,8 +550,8 @@ class ConfirmOTP(APIView):
         username = body['username']
         otpobj = OTP.objects.get(OTP=otp)
         print("gg1")
-        if datetime.now()>otpobj.Date + datetime.timedelta(days=0,hours=1):
-            return Response("Fail")
+       # if datetime.datetime.now()>otpobj.Date + datetime.timedelta(days=0,hours=1):
+        #    return Response("Fail")
         print("gg2")
         if otpobj.email == email :
             password1=body['password1']
@@ -483,6 +560,7 @@ class ConfirmOTP(APIView):
             if password1 == password2 :
                 user = User.objects.get(username=username)
                 user.set_password(password1)
+                user.save()
                 return Response("Success")
             else :
                 return Response("Fail")
