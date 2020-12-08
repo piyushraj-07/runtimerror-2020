@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  notifs=[];
+  notifs={'titles':[],'seen':[],'priority':[]};
   constructor(private auth:AuthService,private router: Router) { }
   newstr="";
   /** 

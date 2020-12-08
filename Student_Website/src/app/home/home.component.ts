@@ -10,10 +10,9 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   flag69=false;
   flag70=false;
-  courses=[{title : ""}];
+  courses=[];
   empForm = new FormGroup({
     username: new FormControl(''),
-    course: new FormControl(''),
     code: new FormControl(''),
   });
   empForm1 = new FormGroup({
@@ -26,9 +25,10 @@ export class HomeComponent implements OnInit {
   constructor(private auth:AuthService,private router: Router) { }
 
   ngOnInit(): void {
-    this.auth.CoursesList({'username': sessionStorage.getItem('username')}).subscribe(
+    this.auth.CoursesList({'username': sessionStorage.getItem('username'),'fcmtoken':''}).subscribe(
       res => {
         this.courses=res;
+        console.log(res);
       },
       error => {
         console.log(error);
