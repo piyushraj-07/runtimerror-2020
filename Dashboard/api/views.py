@@ -405,7 +405,7 @@ class sendNotif(APIView):
                     registration_ids=fcm_token,message_title=title,
                     message_body=content, data_message=data,extra_notification_kwargs=extra_notification_kwargs)
                 n-=1
-                time.sleep(10)
+                time.sleep(20)
         else :
             fcm_token=[]
             for i in Student.objects.filter(courses=course):

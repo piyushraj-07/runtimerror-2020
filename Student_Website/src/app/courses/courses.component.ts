@@ -8,18 +8,10 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  listdisp=false;
-  notifdisp=false;
-  notifflg=true;
-  taflg=false;
-  removeflg=false;
-  varta=false;
-  Dict={'students':[],'tas':[]};
-  flag2=false;
-  flag1=false;
-  notifs=[];
+  notifs={'titles':[],'seen':[],'priority':[]};
   constructor(private auth:AuthService,private router: Router) { }
   newstr="";
+  /** 
   empForm = new FormGroup({
     username: new FormControl(''),
     course: new FormControl(''),
@@ -38,19 +30,29 @@ export class CoursesComponent implements OnInit {
   empForm3 = new FormGroup({
     username: new FormControl(''),
     course: new FormControl(''),
-  });
+  });*/
   empForm4 = new FormGroup({
     username: new FormControl(''),
     course: new FormControl(''),
   });
   ngOnInit(): void {
-    if(sessionStorage.getItem('TA')=='false') this.varta=false;
-    else this.varta=true;
     this.newstr=this.router.url.replace(/%20/g," ");
     this.newstr=this.newstr.replace(/\//g,"");
     this.newstr=this.newstr.substring(4);
     sessionStorage.setItem('course',this.newstr);
+    this.empForm4.value.course=this.newstr;
+    this.empForm4.value.username=sessionStorage.getItem('username');  
+    this.auth.getNotif(this.empForm4.value).subscribe(
+      res => {
+        this.notifs=res;
+        console.log(res);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
+  /** 
   onSubmit(){
     this.empForm.value.course=this.newstr;
     this.empForm.value.username=sessionStorage.getItem('username');
@@ -133,4 +135,5 @@ export class CoursesComponent implements OnInit {
     this.removeflg=!this.removeflg;
     this.taflg=false;
   }
+  */
 }

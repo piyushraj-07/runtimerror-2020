@@ -67,7 +67,7 @@
     <br>
     <div *ngIf="flag1&&notifdisp">
     <ul>
-        <a *ngFor="let notif of notifs" routerLink="/{{notif}}">
+        <a *ngFor="let notif of notifs" routerLink="/notification/{{notif}}">
             <h2>{{notif}}</h2>
         </a>
     </ul> 

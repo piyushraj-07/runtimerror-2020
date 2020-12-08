@@ -60,8 +60,8 @@ class _LoginFormState extends State<LoginForm> {
                       obscureText: true,
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      height: MediaQuery.of(context).size.width * 0.22,
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      height: MediaQuery.of(context).size.width * 0.20,
                       child: Padding(
                         padding: EdgeInsets.only(top: 30.0),
                         child: RaisedButton(
@@ -71,7 +71,7 @@ class _LoginFormState extends State<LoginForm> {
                           child: Text(
                             'Login',
                             style: TextStyle(
-                              fontSize: 24.0,
+                              fontSize: 20.0,
                             ),
                           ),
                           shape: StadiumBorder(
@@ -84,15 +84,15 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.85,
-                      height: MediaQuery.of(context).size.width * 0.22,
+                      width: MediaQuery.of(context).size.width * 0.40,
+                      height: MediaQuery.of(context).size.width * 0.20,
                       child: Padding(
                         padding: EdgeInsets.only(top: 30.0),
                         child: RaisedButton(
                           child: Text(
                             'Sign Up',
                             style: TextStyle(
-                              fontSize: 24.0,
+                              fontSize: 20.0,
                             ),
                           ),
                           onPressed: () {
@@ -108,6 +108,27 @@ class _LoginFormState extends State<LoginForm> {
                               width: 2,
                             ),
                           ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment(1.0, 0.0),
+                      padding: EdgeInsets.only(top: 15.0, left: 20.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ThirdRoute()),
+                          );
+                        },
+                        child: Text(
+                          'Forgot Password',
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
+                              decoration: TextDecoration.underline),
                         ),
                       ),
                     ),
@@ -199,7 +220,7 @@ class SecondRoute extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Sign Up'),
       ),
       body: (Container(
         child: Form(
@@ -233,10 +254,10 @@ class SecondRoute extends StatelessWidget {
                   obscureText: true,
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.85,
-                  height: MediaQuery.of(context).size.width * 0.17,
+                  width: MediaQuery.of(context).size.width * 0.40,
+                  height: MediaQuery.of(context).size.width * 0.20,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 15.0),
+                    padding: EdgeInsets.only(top: 30.0),
                     child: RaisedButton(
                       onPressed: () {
                         _onsignupButtonPressed(context);
@@ -245,6 +266,186 @@ class SecondRoute extends StatelessWidget {
                         'Register',
                         style: TextStyle(
                           fontSize: 24.0,
+                        ),
+                      ),
+                      shape: StadiumBorder(
+                        side: BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      )),
+    );
+  }
+}
+
+class ThirdRoute extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _otpController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    Map<String, dynamic> fun() {
+      Map<String, dynamic> toDatabaseJson() => {
+            "email": _emailController.text,
+            "username": _usernameController.text,
+            "password1": _passwordController.text,
+            "password2": _passwordController.text,
+            "otp": _otpController.text,
+          };
+      return toDatabaseJson();
+    }
+
+    Future passwordchange(BuildContext context) async {
+      print(jsonEncode(fun()));
+      String otpurl = 'https://notifyme69.herokuapp.com/api/confirmotp/';
+      final http.Response response = await http.post(
+        otpurl,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(fun()),
+      );
+      print("uuuuuuuu");
+      print(response.body);
+      print("asd");
+
+      if (response.statusCode == 200) {
+        print("suc");
+        final snackBar = SnackBar(
+          content: Text('Password Changed Successfully'),
+          backgroundColor: Colors.green,
+        );
+        // ignore: deprecated_member_use
+        _scaffoldKey.currentState.showSnackBar(snackBar);
+      } else {
+        print("unsuc");
+        // ignore: deprecated_member_use
+        final snackBar = SnackBar(
+          content: Text('Enter correct OTP'),
+          backgroundColor: Colors.red,
+        );
+        // ignore: deprecated_member_use
+        _scaffoldKey.currentState.showSnackBar(snackBar);
+      }
+    }
+
+    _onsignupButtonPressed(BuildContext context) {
+      passwordchange(context);
+    }
+
+    Future sendotp(BuildContext context) async {
+      //print(_tokenURL);
+      //print(jsonEncode(fun()));
+      print("kokoko");
+      String otpurl = 'https://notifyme69.herokuapp.com/api/otp/';
+      String userr = _usernameController.text;
+      String emaill = _emailController.text;
+      String poqw = '{"username":"$userr","email":"$emaill"}';
+      final http.Response response = await http.post(
+        otpurl,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: poqw,
+      );
+      print("uuuuuuuu");
+      print(response.body);
+      print("asd");
+
+      if (response.statusCode == 200) {
+        print("suc");
+        final snackBar = SnackBar(
+          content: Text('OTP sent to your Email'),
+          backgroundColor: Colors.green,
+        );
+        // ignore: deprecated_member_use
+        _scaffoldKey.currentState.showSnackBar(snackBar);
+      } else {
+        print("unsuc");
+        // ignore: deprecated_member_use
+        final snackBar = SnackBar(
+          content: Text('Enter correct details'),
+          backgroundColor: Colors.red,
+        );
+        // ignore: deprecated_member_use
+        _scaffoldKey.currentState.showSnackBar(snackBar);
+      }
+    }
+
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: AppBar(
+        title: Text('Change Password'),
+      ),
+      body: (Container(
+        child: Form(
+          child: Padding(
+            padding: EdgeInsets.all(30.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'username', icon: Icon(Icons.person)),
+                  controller: _usernameController,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'email', icon: Icon(Icons.person)),
+                  controller: _emailController,
+                ),
+                Container(
+                  alignment: Alignment(1.0, 0.0),
+                  padding: EdgeInsets.only(top: 10.0, left: 20.0),
+                  child: InkWell(
+                    onTap: () {
+                      sendotp(context);
+                    },
+                    child: Text(
+                      'Send OTP',
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Montserrat',
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'OTP', icon: Icon(Icons.security)),
+                  controller: _otpController,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'new password', icon: Icon(Icons.security)),
+                  controller: _passwordController,
+                  obscureText: true,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.55,
+                  height: MediaQuery.of(context).size.width * 0.20,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 30.0),
+                    child: RaisedButton(
+                      onPressed: () {
+                        _onsignupButtonPressed(context);
+                      },
+                      child: Text(
+                        'Update Password',
+                        style: TextStyle(
+                          fontSize: 20.0,
                         ),
                       ),
                       shape: StadiumBorder(

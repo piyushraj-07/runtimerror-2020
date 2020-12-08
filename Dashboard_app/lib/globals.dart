@@ -8,3 +8,4 @@ String notidet = '';
 int notinum = 0;
 bool isTa = false;
 String stud = '';
+List seenstuds = [];

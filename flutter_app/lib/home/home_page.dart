@@ -186,7 +186,9 @@ class _MessageHandlerState extends State<MessageHandler> {
                 FlatButton(
                   color: Colors.amber,
                   child: Text('Ok'),
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                 ),
               ],
             ),
@@ -333,15 +335,20 @@ class _MessageHandlerState extends State<MessageHandler> {
 
 }
 
-class SecondRoute extends StatelessWidget {
+class SecondRoute extends StatefulWidget {
+  @override
+  _MeHandlerState createState() => _MeHandlerState();
+}
+
+class _MeHandlerState extends State<SecondRoute> {
   @override
   // ignore: override_on_non_overriding_member
   Future getcdat() async {
     String sez = 'https://notifyme69.herokuapp.com/api/get_notifs/';
     String secC = "Token " + globals.tokun;
     String cors = globals.cours;
-    //String pqww = globals.usern;
-    String po = '{"course":"$cors"}';
+    String pqww = globals.usern;
+    String po = '{"course":"$cors","username":"$pqww"}';
     print(po);
     //print(tpp);
     final http.Response response = await http.post(
@@ -359,9 +366,10 @@ class SecondRoute extends StatelessWidget {
       var data = json.decode(response.body);
       //print(data);
       print(response.body);
-      List a = data["title"];
+      List a = data["titles"];
       print(a);
       globals.notpr = data["priority"];
+      globals.notisenn = data["seen"];
       //List b = a[1].split(']');
       //List lists = b[0].split(',');
       //print(lists);
@@ -379,30 +387,77 @@ class SecondRoute extends StatelessWidget {
     //final alreadySaved = _savedWordPairs.contains(pair);
     pair = pair.replaceAll("\"", "");
     if (globals.notpr[numb]) {
+      if (globals.notisenn[numb]) {
+        return ListTile(
+            title: Text(pair,
+                style: TextStyle(fontSize: 16.0, color: Colors.orange)),
+            // leading: Icon(Icons.priority_high),
+            trailing: Icon(Icons.arrow_right_alt),
+            onTap: () {
+              globals.notidet = pair;
+              globals.notinum = numb;
+              globals.notisenn[numb] = true;
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ThirdRoute()),
+              );
+              setState(() {});
+            });
+      }
       return ListTile(
-          title: Text(pair, style: TextStyle(fontSize: 18.0)),
-          leading: Icon(Icons.priority_high_sharp),
+          title: Text(pair,
+              style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.orange)),
+          // leading: Icon(Icons.priority_high),
           trailing: Icon(Icons.arrow_right_alt),
           onTap: () {
             globals.notidet = pair;
             globals.notinum = numb;
+            globals.notisenn[numb] = true;
+            //setState(() {});
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => ThirdRoute()),
             );
+            setState(() {});
+          });
+    } else {
+      if (globals.notisenn[numb]) {
+        return ListTile(
+            title: Text(pair, style: TextStyle(fontSize: 16.0)),
+            //  leading: Icon(Icons.priority_high),
+            trailing: Icon(Icons.arrow_right_alt),
+            onTap: () {
+              globals.notidet = pair;
+              globals.notinum = numb;
+              globals.notisenn[numb] = true;
+              // setState(() {});
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ThirdRoute()),
+              );
+              setState(() {});
+            });
+      }
+      return ListTile(
+          title: Text(pair,
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+          //  leading: Icon(Icons.priority_high),
+          trailing: Icon(Icons.arrow_right_alt),
+          onTap: () {
+            globals.notidet = pair;
+            globals.notinum = numb;
+            globals.notisenn[numb] = true;
+            //setState(() {});
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ThirdRoute()),
+            );
+            setState(() {});
           });
     }
-    return ListTile(
-        title: Text(pair, style: TextStyle(fontSize: 18.0)),
-        trailing: Icon(Icons.arrow_right_alt),
-        onTap: () {
-          globals.notidet = pair;
-          globals.notinum = numb;
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ThirdRoute()),
-          );
-        });
   }
 
   Widget notigbuild() {

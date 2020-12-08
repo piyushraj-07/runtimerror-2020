@@ -51,17 +51,10 @@ export class CoursesComponent implements OnInit {
     this.newstr=this.newstr.substring(4);
     sessionStorage.setItem('course',this.newstr);
   }
-  onSubmit(){
+  async onSubmit(){
     this.empForm.value.course=this.newstr;
     this.empForm.value.username=sessionStorage.getItem('username');
-    this.auth.SendNotif(this.empForm.value).subscribe(
-      res => {
-        console.log(res);
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    await this.auth.SendNotif(this.empForm.value);
     window.location.reload();
   }
   func(){
@@ -85,25 +78,26 @@ export class CoursesComponent implements OnInit {
     this.auth.addTA(this.empForm2.value).subscribe(
       res => {
         console.log(res);
+        alert("Ta added");
       },
       error => {
         console.log(error);
+        alert("Ta not registered");
       }
     )
-    window.location.reload();
   }
   onSubmit2(){
-    console.log(this.empForm3.value);
     this.empForm3.value.course=this.newstr;
     this.auth.removeStudent(this.empForm3.value).subscribe(
       res => {
         console.log(res);
+        alert("Student removed successfully");
       },
       error => {
         console.log(error);
+        alert("No such student");
       }
     )
-    window.location.reload();
   }
   funcnotif(){
     this.listdisp=false;

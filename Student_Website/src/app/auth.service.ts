@@ -10,8 +10,11 @@ export class AuthService {
   str: string ="";
   httpheaders:any;
   constructor(private http: HttpClient ) {}
+  RegisterUser(data: any): Observable<any>{
+    return this.http.post('https://notifyme69.herokuapp.com/api/register/app/',data);
+  }
   LoginUser(data : any): Observable<any>{
-    return this.http.post('https://notifyme69.herokuapp.com/api/login/dashboard/',data); 
+    return this.http.post('https://notifyme69.herokuapp.com/api/login/app/',data); 
   }
   CoursesList(data:any): Observable<any>{
     this.str='Token '+sessionStorage.getItem('token');
@@ -19,7 +22,7 @@ export class AuthService {
       'Content-Type':  'application/json',
       'Authorization': this.str
   });
-    return this.http.post('https://notifyme69.herokuapp.com/api/inst/get_courses/',data,{headers : this.httpheaders});
+    return this.http.post('https://notifyme69.herokuapp.com/api/get_courses/',data,{headers : this.httpheaders});
   }
   addCourse(data:any): Observable<any>{
     this.str='Token '+sessionStorage.getItem('token');
@@ -27,7 +30,7 @@ export class AuthService {
       'Content-Type':  'application/json',
       'Authorization': this.str
   });
-    return this.http.post('https://notifyme69.herokuapp.com/api/add_course/',data,{headers : this.httpheaders});
+    return this.http.post('https://notifyme69.herokuapp.com/api/join_course/',data,{headers : this.httpheaders});
   }
   ChangePassword(data : any): Observable<any>{
     this.str='Token '+sessionStorage.getItem('token');
@@ -75,7 +78,7 @@ export class AuthService {
       'Content-Type':  'application/json',
       'Authorization': this.str
   });
-  return this.http.post('https://notifyme69.herokuapp.com/api/inst/get_notifs/',data,{headers:this.httpheaders});
+  return this.http.post('https://notifyme69.herokuapp.com/api/get_notifsWeb/',data,{headers:this.httpheaders});
   }
   getNotifDetails(data:any): Observable<any>{
     this.str='Token '+sessionStorage.getItem('token');
@@ -83,7 +86,7 @@ export class AuthService {
       'Content-Type':  'application/json',
       'Authorization': this.str
   });
-  return this.http.post('https://notifyme69.herokuapp.com/api/inst/get_notif_details/',data,{headers:this.httpheaders});
+  return this.http.post('https://notifyme69.herokuapp.com/api/get_notif_detailsWeb/',data,{headers:this.httpheaders});
   }
   canActivate(): boolean{
     if(sessionStorage.getItem('state')=='true') return true;
