@@ -140,7 +140,7 @@ class CourseViewInstructors(APIView):
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         username = body['username']
-        user = User.objects.get(username=username)
+        user = User.objects.get(username=username)gi
         data = {}
         instruct = Instructor.objects.get(user=user)
         l=[]
@@ -506,7 +506,13 @@ class RemoveStudent(APIView):
         stud.courses.remove(course)
         course.save()
         stud.save()
+        fcm_token=[stud.token]
+        data={}
+        push_service.notify_multiple_devices(
+                    registration_ids=fcm_token,message_title="Removed From"+coursename,
+                    message_body="You were removed from this course by the instructor", data_message=data)
         return Response("Success")
+    
 
 class changePassword(APIView):
     permission_classes = [IsAuthenticated]
@@ -566,3 +572,17 @@ class ConfirmOTP(APIView):
                 return Response("Fail")
         else :
             return Response("Fail")        
+
+class VerifyInst(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, format=None):
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        username = body['username']
+        coursename = body['course']
+        course = Course.objects.get(name=coursename)
+        user = User.objects.get(username=username)
+        if user in course.instructors or user in course.tas :
+            return Response("Success")
+        else :
+            return Response(status=401)
