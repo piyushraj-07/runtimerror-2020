@@ -24,6 +24,10 @@ Future<Token> getToken(UserLogin userLogin) async {
   } else {
     var tu = json.decode(response.body);
     globals.isTa = tu["isTa"];
+    print(tu);
+    print(tu["isTa"]);
+    print("huloooooo");
+    print(globals.isTa);
     return Token.fromJson(json.decode(response.body));
   }
 }

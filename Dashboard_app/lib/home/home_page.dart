@@ -290,16 +290,18 @@ class _MsageHandlerState extends State<Onepointfive> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _titleController = TextEditingController();
   final _contentController = TextEditingController();
-  final _flagController = TextEditingController();
-  final _usernameController = TextEditingController();
   BuildContext globcont;
   Map<String, dynamic> fun() {
+    String flagg = "Soft";
+    if (isSwitched) {
+      flagg = "Hard";
+    }
     Map<String, dynamic> toDatabaseJson() => {
-          "username": _usernameController.text,
+          "username": globals.usern,
           "title": _titleController.text,
           "content": _contentController.text,
           "course": globals.cours,
-          "flag": _flagController.text,
+          "flag": flagg,
         };
     return toDatabaseJson();
   }
@@ -339,6 +341,7 @@ class _MsageHandlerState extends State<Onepointfive> {
     }
   }
 
+  bool isSwitched = false;
   Widget build(BuildContext context) {
     globcont = context;
     return Scaffold(
@@ -349,12 +352,8 @@ class _MsageHandlerState extends State<Onepointfive> {
           PopupMenuButton<String>(
             onSelected: handleClick,
             itemBuilder: (BuildContext context) {
-              return {
-                'Add a TA',
-                'Previous Notification',
-                'Students Enrolled',
-                'TA\'s'
-              }.map((String choice) {
+              return {'Previous Notification', 'Students Enrolled', 'TA\'s'}
+                  .map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
@@ -374,11 +373,6 @@ class _MsageHandlerState extends State<Onepointfive> {
               children: <Widget>[
                 TextFormField(
                   decoration: InputDecoration(
-                      labelText: 'username', icon: Icon(Icons.person)),
-                  controller: _usernameController,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
                       labelText: 'title', icon: Icon(Icons.book)),
                   controller: _titleController,
                 ),
@@ -387,10 +381,18 @@ class _MsageHandlerState extends State<Onepointfive> {
                       labelText: 'content', icon: Icon(Icons.book_online)),
                   controller: _contentController,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                      labelText: 'Priority', icon: Icon(Icons.ac_unit)),
-                  controller: _flagController,
+                SwitchListTile(
+                  value: isSwitched,
+                  title: new Text('High Priority',
+                      style: new TextStyle(color: Colors.grey)),
+                  onChanged: (value) {
+                    setState(() {
+                      isSwitched = value;
+                    });
+                  },
+                  //secondary: const Icon(Icons.priority_high),
+                  activeTrackColor: Colors.lightGreenAccent,
+                  activeColor: Colors.green,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.85,
@@ -438,22 +440,17 @@ class _MsageHandlerState extends State<Onepointfive> {
         {
           Navigator.push(
             globcont,
-            MaterialPageRoute(builder: (context) => SecondRoute()),
-          );
-          print("chanef");
-          break;
-        }
-      case 'Add a TA':
-        {
-          Navigator.push(
-            globcont,
-            MaterialPageRoute(builder: (context) => SecondRoute()),
+            MaterialPageRoute(builder: (context) => FifthRoute()),
           );
           print("chanef");
           break;
         }
       case 'Previous Notification':
         {
+          Navigator.push(
+            globcont,
+            MaterialPageRoute(builder: (context) => SecondRoute()),
+          );
           break;
         }
     }
@@ -526,20 +523,73 @@ class _MeeHandlerState extends State<Studentlist> {
     );
     if (susponse.statusCode == 200) {
       print("suc");
+      setState(() {});
       // notigbuild();
       // ignore: deprecated_member_use
-      return Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text('Student Removed Successfully'),
-        backgroundColor: Colors.green,
-      ));
+      return "";
     } else {
       print("unsuc");
       // ignore: deprecated_member_use
-      return Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text('Student Not Removed'),
-        backgroundColor: Colors.red,
-      ));
+      return "";
     }
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext wecontext) {
+        return AlertDialog(
+          title: Text('Remove this student'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('click OK to confirm'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            RaisedButton(
+              child: Text('OK'),
+              onPressed: () {
+                removestud(context);
+                //setState(() {});
+                Navigator.of(wecontext).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> deny() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext wecontext) {
+        return AlertDialog(
+          title: Text('PERMISSION DENIED'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('You do not have permission to remove a student'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            RaisedButton(
+              child: Text('Go Back'),
+              onPressed: () {
+                //removestud(context);
+                //setState(() {});
+                Navigator.of(wecontext).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Widget _kildRow(BuildContext context, String pair, int numb) {
@@ -549,23 +599,12 @@ class _MeeHandlerState extends State<Studentlist> {
         title: Text(pair, style: TextStyle(fontSize: 18.0)),
         trailing: Icon(Icons.remove_circle),
         onTap: () {
-          Alert(
-              context: context,
-              title: "Remove this Student",
-              content: Text("Click OK to confirm"),
-              buttons: [
-                DialogButton(
-                  onPressed: () {
-                    globals.stud = pair;
-                    removestud(context);
-                  },
-                  child: Text(
-                    "OK",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                )
-              ]).show();
-          setState(() {});
+          globals.stud = pair;
+          if (globals.isTa) {
+            deny();
+          } else {
+            _showMyDialog();
+          }
         });
   }
 
@@ -696,12 +735,12 @@ class ThirdRoute extends StatelessWidget {
   @override
   // ignore: override_on_non_overriding_member
   Future getcdat() async {
-    String sez = 'https://notifyme69.herokuapp.com/api/get_notif_details/';
+    String sez = 'https://notifyme69.herokuapp.com/api/inst/get_notif_details/';
     String secC = "Token " + globals.tokun;
-    int cors = globals.notinum;
+    //int cors = globals.notinum;
     String coursename = globals.cours;
-    String pqww = globals.usern;
-    String po = '{"id":"$cors","course":"$coursename","username":"$pqww"}';
+    String pqww = globals.notidet;
+    String po = '{"course":"$coursename","name":"$pqww"}';
     print(po);
     //print(tpp);
     final http.Response response = await http.post(
@@ -724,8 +763,10 @@ class ThirdRoute extends StatelessWidget {
       a.add(parsedJson["content"]);
       a.add(parsedJson["sender"]);
       a.add(parsedJson["time"]);
+      globals.seenstuds = a;
       print(a);
-      return a;
+      print(globals.seenstuds);
+      return parsedJson["read"];
     } else {
       print("nolo");
       //print(json.decode(response.body).toString());
@@ -765,8 +806,54 @@ class ThirdRoute extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Acknowledged by'), actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.info),
+          tooltip: 'Show Notif Details',
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ThreepointfiveRoute()),
+            );
+          },
+        ),
+      ]),
+      body: notigbuild(),
+    );
+  }
+}
+
+class ThreepointfiveRoute extends StatelessWidget {
+  // @override
+  // ignore: override_on_non_overriding_member
+
+  Widget _kildRow(BuildContext context, String pair) {
+    //final alreadySaved = _savedWordPairs.contains(pair);
+    pair = pair.replaceAll("\"", "");
+    return ListTile(
+      title: Text(pair, style: TextStyle(fontSize: 18.0)),
+    );
+  }
+
+  Widget notigbuild() {
+    return Builder(
+      builder: (context) {
+        return ListView.builder(
+          itemCount: globals.seenstuds.length,
+          itemBuilder: (context, index) {
+            String project = globals.seenstuds[index];
+            return _kildRow(context, project);
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       appBar: AppBar(
-        title: Text('Event Details'),
+        title: Text('Notification Details'),
       ),
       body: notigbuild(),
     );
@@ -890,6 +977,178 @@ class FourthRoute extends StatelessWidget {
           ),
         ),
       )),
+    );
+  }
+}
+
+class FifthRoute extends StatefulWidget {
+  @override
+  _MessaHandlerState createState() => _MessaHandlerState();
+}
+
+class _MessaHandlerState extends State<FifthRoute> {
+  @override
+  // ignore: override_on_non_overriding_member
+  final _taController = TextEditingController();
+  Future getcdat() async {
+    String sez = 'https://notifyme69.herokuapp.com/api/getTas/';
+    String secC = "Token " + globals.tokun;
+    String cors = globals.cours;
+    //String pqww = globals.usern;
+    String po = '{"course":"$cors"}';
+    print(po);
+    //print(tpp);
+    final http.Response response = await http.post(
+      sez,
+      headers: <String, String>{
+        //'Content-Type': 'application/json; charset=UTF-8',
+        //'Vary': 'Accept',
+        //'WWW-Authenticate': globals.tokun,
+        'Authorization': secC,
+      },
+      body: po,
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      print("holo");
+      //var data = json.decode(response.body) as List;
+      //print(data);
+      print(response.body);
+      List a = response.body.split('[');
+      print(a);
+      List b = a[1].split(']');
+      List lists = b[0].split(',');
+      print(lists);
+      //print(response.body);
+      //print(json.decode(response.body));
+      return lists;
+    } else {
+      print("nolo");
+      print(json.decode(response.body).toString());
+      throw Exception(json.decode(response.body));
+    }
+  }
+
+  Widget _kildRow(BuildContext context, String pair) {
+    //final alreadySaved = _savedWordPairs.contains(pair);
+    pair = pair.replaceAll("\"", "");
+    return ListTile(
+      title: Text(pair, style: TextStyle(fontSize: 18.0)),
+    );
+  }
+
+  Widget notigbuild() {
+    return FutureBuilder(
+      future: getcdat(),
+      builder: (context, projectSnap) {
+        if (projectSnap.hasData == null ||
+            projectSnap.connectionState == ConnectionState.waiting ||
+            projectSnap.connectionState == ConnectionState.none) {
+          //print('project snapshot data is: ${projectSnap.data}');
+          return Center(child: CircularProgressIndicator());
+        }
+        return ListView.builder(
+          itemCount: projectSnap.data.length,
+          itemBuilder: (context, index) {
+            if (projectSnap.data[0] == "") {
+              print("dadadadada");
+              return Container();
+            }
+            String project = projectSnap.data[index];
+            return _kildRow(context, project);
+          },
+        );
+      },
+    );
+  }
+
+  Future addtafinal(BuildContext context) async {
+    String yop = "https://notifyme69.herokuapp.com/api/addTa/";
+    String tpp = "Token " + globals.tokun;
+    String pqww = globals.cours;
+    String tanmae = _taController.text;
+    String pouu = '{"username":"$tanmae","course":"$pqww"}';
+    print(pouu);
+    final http.Response susponse = await http.post(
+      yop,
+      headers: <String, String>{
+        //'Content-Type': 'application/json; charset=UTF-8',
+        //'Vary': 'Accept',
+        //'WWW-Authenticate': globals.tokun,
+        'Authorization': tpp,
+      },
+      body: pouu,
+    );
+    print(susponse.body);
+    if (susponse.body == '"Success"') {
+      print("suc");
+      // ignore: deprecated_member_use
+      setState(() {});
+      return Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text('TA Added Successfully'),
+        backgroundColor: Colors.green,
+      ));
+      //return "";
+    } else {
+      print("unsuc");
+      // ignore: deprecated_member_use
+      return Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text('TA Not found'),
+        backgroundColor: Colors.red,
+      ));
+      //return "";
+    }
+  }
+
+  Future<void> addata(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext wecontext) {
+        return AlertDialog(
+          title: Text('Add a TA'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                TextFormField(
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.person_add),
+                    labelText: 'TA Name',
+                  ),
+                  controller: _taController,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            RaisedButton(
+              child: Text('ADD'),
+              onPressed: () {
+                //removestud(context);
+                //setState(() {});
+                addtafinal(wecontext);
+                Navigator.of(wecontext).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('List of TA\'s'),
+      ),
+      body: notigbuild(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          addata(context);
+        },
+        //tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

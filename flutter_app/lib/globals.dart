@@ -6,3 +6,4 @@ String cours = '';
 String notidet = '';
 int notinum = 0;
 List notpr = [];
+List notisenn = [];
