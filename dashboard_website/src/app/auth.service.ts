@@ -22,13 +22,13 @@ export class AuthService {
   });
     return this.http.post('https://notifyme69.herokuapp.com/api/inst/get_courses/',data,{headers : this.httpheaders});
   }
-  addCourse(data:any): Observable<any>{
+  async addCourse(data:any){
     this.str='Token '+sessionStorage.getItem('token');
     this.httpheaders = new HttpHeaders({
       'Content-Type':  'application/json',
       'Authorization': this.str
   });
-    return this.http.post('https://notifyme69.herokuapp.com/api/add_course/',data,{headers : this.httpheaders});
+    await this.http.post('https://notifyme69.herokuapp.com/api/add_course/',data,{headers : this.httpheaders}).toPromise();
   }
   ChangePassword(data : any): Observable<any>{
     this.str='Token '+sessionStorage.getItem('token');

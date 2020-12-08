@@ -41,19 +41,10 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-  onSubmit(){
+  async onSubmit(){
     this.empForm.value.username=sessionStorage.getItem('username');
-    this.auth.addCourse(this.empForm.value).subscribe(
-      res => {
-        console.log(res);
-        sessionStorage.setItem('temp','abc');
-      },
-      error => {
-        console.log(error);
-        sessionStorage.setItem('temp','abc');
-      }
-    )
-    if(sessionStorage.getItem('temp')=='abc') window.location.reload();
+    await this.auth.addCourse(this.empForm.value);
+    window.location.reload();
   }
   onSubmit1(){
     this.auth.ChangePassword(this.empForm1.value).subscribe(
